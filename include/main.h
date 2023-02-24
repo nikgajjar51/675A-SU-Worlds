@@ -39,10 +39,10 @@
 /**
  * You should add more #includes here
  */
-//#include "okapi/api.hpp"
-//#include "pros/api_legacy.h"
+// #include "okapi/api.hpp"
+// #include "pros/api_legacy.h"
+#include "675A/match-autons.hpp"
 #include "EZ-Template/api.hpp"
-#include "autons.hpp"
 
 // More includes here...
 //
@@ -81,7 +81,7 @@ void opcontrol(void);
 /**
  * You can add C++-only headers here
  */
-//#include <iostream>
+// #include <iostream>
 #endif
 
-#endif  // _PROS_MAIN_H_
+#endif // _PROS_MAIN_H_
