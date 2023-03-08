@@ -10,3 +10,7 @@ void chassis_modified_exit_condition();
 extern double flywheel_speeds[flywheel_smooth_size], flywheel_kP, flywheel_kI,
     flywheel_integral, flywheel_error, flywheel_speed,
     flywheel_current_velocity;
+
+// FeedForward Constants
+extern double kP, kI, kD, kF, error, integral, derivative, lastError, lastTime,
+    deltaTime;
