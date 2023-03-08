@@ -7,19 +7,19 @@ void flywheel_pid::init(flywheel_pid_settings pidSettings) {
   setKp(pidSettings.kP);
   setKi(pidSettings.kI);
   setKd(pidSettings.kD);
-  setKff(pidSettings.kFF);
+  setKf(pidSettings.kF);
   _outLimits = pidSettings.outLimits;
   _dFilter = pidSettings.dFilter;
   _accLimit = pidSettings.accLimit * PID_SCALE;
   reset();
 }
 
-void flywheel_pid::init(float kP, float kI, float kD, float kFF,
-                        float outLimits, float dFilter, float accLimit) {
+void flywheel_pid::init(double kP, double kI, double kD, double kF, double outLimits,
+                        double dFilter, double accLimit) {
   setKp(kP);
   setKi(kI);
   setKd(kD);
-  setKff(kFF);
+  setKf(kF);
   _outLimits = outLimits;
   _dFilter = dFilter;
   accLimit = accLimit * PID_SCALE;
@@ -31,39 +31,38 @@ flywheel_pid_settings flywheel_pid::get_flywheel_pid_settings() {
   pidSettings.kP = getKp();
   pidSettings.kI = getKi();
   pidSettings.kD = getKd();
-  pidSettings.kFF = getKff();
+  pidSettings.kF = getKf();
   pidSettings.outLimits = _outLimits;
   pidSettings.dFilter = _dFilter;
   pidSettings.accLimit = _accLimit;
   return pidSettings;
 }
 
-float flywheel_pid::spin(float input, float setpoint) {
-  return spin(input, setpoint, 1);
+double flywheel_pid::set_velocity(double target_velocity) {
+  return set_velocity(target_velocity, 1);
 }
 
-float flywheel_pid::spin(float input, float setpoint, float attenuation) {
+double flywheel_pid::set_velocity(double target_velocity, double attenuation) {
 
-  float output = 0;
-  float pControl = 0;
-  float iControl = 0;
-  float dControl = 0;
-  float ffControl = 0;
+  double output = 0;
+  double pControl = 0;
+  double iControl = 0;
+  double dControl = 0;
+  double ffControl = 0;
 
   if (_enable) {
 
     if (_resetState) {
-      _prevInput = input;
+      _prevInput = get_flywheel_velocity();
       _resetState = false;
     }
+    // Error
+    double error = target_velocity - get_flywheel_velocity();
 
-    float error = setpoint - input;
-
-    // P
+    // Proportional
     pControl = error * _kP * attenuation;
 
-    // I
-    //  accumulator + accumulator limiting
+    // Intergral Accumulator + Accumulator Limiting
     if (_kI != 0) {
 
       _accumulator += error;
@@ -81,12 +80,11 @@ float flywheel_pid::spin(float input, float setpoint, float attenuation) {
       iControl = 0;
     }
 
-    // D
-    // low passing the velocity part
+    // Derivative
     if (_kD != 0) {
 
       _dBuffer =
-          _dBuffer + (((input - _prevInput) - _dBuffer) / (_dFilter + 1));
+          _dBuffer + (((get_flywheel_velocity() - _prevInput) - _dBuffer) / (_dFilter + 1));
 
       dControl = _dBuffer * _kD * attenuation;
 
@@ -95,16 +93,14 @@ float flywheel_pid::spin(float input, float setpoint, float attenuation) {
       dControl = 0;
     }
 
-    // FF
-    // feed forward control
-
-    ffControl = setpoint * _kFF * attenuation;
+    // Feed Forward Control
+    ffControl = target_velocity * _kF * attenuation;
 
     output = (pControl + iControl + dControl + ffControl) / PID_SCALE;
 
-    _prevInput = input;
+    _prevInput = get_flywheel_velocity();
 
-    // output limiting
+    // Output Limiter
     if (output > _outLimits) {
       output = _outLimits;
     } else if (output < -(_outLimits)) {
@@ -120,10 +116,10 @@ float flywheel_pid::spin(float input, float setpoint, float attenuation) {
   return output;
 }
 
-void flywheel_pid::setKp(float kP) { _kP = kP; }
-void flywheel_pid::setKi(float kI) { _kI = kI; }
-void flywheel_pid::setKd(float kD) { _kD = kD; }
-void flywheel_pid::setKff(float kFF) { _kFF = kFF; }
+void flywheel_pid::setKp(double kP) { _kP = kP; }
+void flywheel_pid::setKi(double kI) { _kI = kI; }
+void flywheel_pid::setKd(double kD) { _kD = kD; }
+void flywheel_pid::setKf(double kF) { _kF = kF; }
 
 void flywheel_pid::enable() { _enable = true; }
 void flywheel_pid::disable() {
@@ -138,7 +134,7 @@ void flywheel_pid::reset() {
   _resetState = true;
 }
 
-float flywheel_pid::getKp() { return _kP; }
-float flywheel_pid::getKi() { return _kI; }
-float flywheel_pid::getKd() { return _kD; }
-float flywheel_pid::getKff() { return _kFF; }
+double flywheel_pid::getKp() { return _kP; }
+double flywheel_pid::getKi() { return _kI; }
+double flywheel_pid::getKd() { return _kD; }
+double flywheel_pid::getKf() { return _kF; }
