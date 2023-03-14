@@ -3,9 +3,9 @@ using namespace pros;
 // Chassis constructor
 Drive chassis(
     // Left Chassis Ports (negative port will reverse it!)
-    {2, 5},
+    {-4, -3, -2},
     // Right Chassis Ports (negative port will reverse it!)
-    {-3, -4},
+    {8, 9, 10},
     // IMU Port
     21,
     // Wheel Diameter (Remember, 4" wheels are actually 4.125!)
@@ -22,7 +22,9 @@ void initialize() {
   chassis.set_curve_default(0, 0);
   chassis_default_constants();
   chassis_exit_condition_defaults();
-  ez::as::auton_selector.add_autons({});
+  ez::as::auton_selector.add_autons({
+      Auton("Right Side 1", right_side_1),
+  });
   chassis.initialize();
   ez::as::initialize();
 }
@@ -41,8 +43,7 @@ void autonomous() {
 void opcontrol() {
   chassis.set_drive_brake(MOTOR_BRAKE_COAST);
   while (true) {
-    chassis.arcade_standard(ez::SPLIT); // Standard split arcade
-    delay(ez::util::DELAY_TIME);  // This is used for timer calculations!
-                                        // Keep this ez::util::DELAY_TIME
+    chassis.arcade_standard(ez::SPLIT);
+    delay(ez::util::DELAY_TIME);
   }
 }

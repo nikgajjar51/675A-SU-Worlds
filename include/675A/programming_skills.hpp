@@ -1,3 +1,3 @@
 #pragma once
 #include "api.h"
-void programming_skills_1(void);
+void programming_skills_1(void *);

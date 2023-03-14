@@ -44,6 +44,7 @@
 #include "675A/constants.hpp"
 #include "675A/flywheel_pid.hpp"
 #include "675A/helper_functions.hpp"
+#include "675A/match_autons.hpp"
 #include "675A/op_control_functions.hpp"
 #include "675A/programming_skills.hpp"
 #include "675A/robot_config.hpp"
