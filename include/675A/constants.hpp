@@ -15,9 +15,12 @@ extern double flywheel_speeds[flywheel_smooth_size], flywheel_kP, flywheel_kI,
     flywheel_integral, flywheel_error, flywheel_speed,
     flywheel_current_velocity;
 
-// FeedForward Constants
-extern double kP, kI, kD, kF, error, integral, derivative, lastError, lastTime,
-    deltaTime;
+// Feed Forward Constants
+const double kP = 0.1;
+const double kI = 0.0;
+const double kD = 0.0;
+const double kF = 0.0001;
+
 
 // Motor Constants
 extern double intake_in_speed, intake_out_speed;
