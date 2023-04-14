@@ -4,7 +4,8 @@
       "name": "PROS Project",
       "includePath": [
         "${workspaceFolder}/**",
-        "c:\\Users\\Nikhil Gajjar\\Documents\\Code\\675A - SU - Worlds\\include"
+        "c:\\Users\\Nikhil Gajjar\\Documents\\Code\\675A - SU - Worlds\\include",
+        "c:\\Users\\Nikhil Gajjar\\Documents\\Code\\675\\include"
       ],
       "defines": [
         "_DEBUG",
@@ -15,10 +16,10 @@
       "cStandard": "c17",
       "cppStandard": "c++17",
       "intelliSenseMode": "gcc-arm",
-      "compileCommands": "c:\\Users\\Nikhil Gajjar\\Documents\\Code\\675A - SU - Worlds\\compile_commands.json",
+      "compileCommands": "c:\\Users\\Nikhil Gajjar\\Documents\\Code\\675\\compile_commands.json",
       "browse": {
         "path": [
-          "c:\\Users\\Nikhil Gajjar\\Documents\\Code\\675A - SU - Worlds"
+          "c:\\Users\\Nikhil Gajjar\\Documents\\Code\\675"
         ],
         "limitSymbolsToIncludedHeaders": true,
         "databaseFilename": ""
