@@ -1,29 +1,21 @@
+#include "constants.hpp"
+#include "helper_functions.hpp"
 #include "main.h"
+#include "robot_config.hpp"
 using namespace pros;
-std::string drive_lock_type = "Coast", alliance = "Red", intake_clamp_position;
-bool drive_lock_toggle = false, intake_clamp_toggle = false,
-     intake_clamp_state = true, is_flywheel_running = false,
-     is_tongue_up = true;
-controller_digital_e_t flywheel_toggle_button = E_CONTROLLER_DIGITAL_R2;
-controller_digital_e_t tongue_toggle_button = E_CONTROLLER_DIGITAL_LEFT;
-controller_digital_e_t tongue_speed_button = E_CONTROLLER_DIGITAL_UP;
-controller_digital_e_t intake_clamp_toggle_button = E_CONTROLLER_DIGITAL_R1;
-controller_digital_e_t intake_in_button = E_CONTROLLER_DIGITAL_L1;
-controller_digital_e_t intake_out_button = E_CONTROLLER_DIGITAL_L2;
-controller_digital_e_t drive_lock_toggle_button = E_CONTROLLER_DIGITAL_RIGHT;
 void flywheel_control_function() {
-  if (master.get_digital(flywheel_toggle_button)) {
+  if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
     is_flywheel_running = !is_flywheel_running;
-    flywheel_integral = 0;
-    for (int i = 0; i < flywheel_smooth_size; i++) {
-      flywheel_speeds[i] = 0;
-    }
-    std::cout << endl << endl << "new power:" << endl << endl;
+  }
+  if (is_flywheel_running) {
+    flywheel.move_velocity(500);
+  } else if (!is_flywheel_running) {
+    flywheel.move_velocity(0);
   }
 }
 void tongue_control_function() {
   while (true) {
-    if (master.get_digital(tongue_toggle_button)) {
+    if (master.get_digital_new_press(tongue_toggle_button)) {
       is_tongue_up = !is_tongue_up;
     }
     if (is_flywheel_running) {
@@ -37,6 +29,11 @@ void tongue_control_function() {
       flywheel_power(0);
     }
     delay(ez::util::DELAY_TIME);
+  }
+}
+void feedforward_control_function() {
+  if (master.get_digital(flywheel_toggle_button)) {
+    flywheel_feedforward_pid(7000);
   }
 }
 void intake_clamp_control_function() {
@@ -54,13 +51,10 @@ void intake_control_function() {
   while (true) {
     if (master.get_digital(intake_in_button)) {
       intake_power(intake_in_speed);
-      intake_pneumatic.set_value(intake_clamp_state);
     } else if (master.get_digital(intake_out_button)) {
       intake_power(intake_out_speed);
-      intake_pneumatic.set_value(intake_clamp_state);
     } else {
       intake.move_velocity(0);
-      intake_pneumatic.set_value(false);
     }
     delay(ez::util::DELAY_TIME);
   }
@@ -92,3 +86,7 @@ void drive_lock_control_function() {
     }
   }
 }
+Task autonomous_data_export_task(autonomous_data_export);
+Task drive_data_export_task(driver_data_export);
+Task intake_task(intake_control_function);
+Task endgame_task(endgame_control_function);

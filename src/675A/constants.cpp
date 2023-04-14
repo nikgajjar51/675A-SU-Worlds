@@ -3,6 +3,10 @@ using namespace pros;
 const int drive_speed = 70, turn_speed = 75, swerve_speed = 50;
 const double low_speed_multiplier = .5, normal_speed_multiplier = 1,
              high_speed_multiplier = 1.7, balls_to_the_walls = 2;
+std::string drive_lock_type = "Coast", alliance = "Red";
+bool drive_lock_toggle = false, intake_clamp_toggle = true,
+     intake_clamp_state = true, is_flywheel_running = false,
+     is_tongue_up = true;
 void chassis_default_constants() {
   chassis.set_slew_min_power(80, 80);
   chassis.set_slew_distance(7, 7);
@@ -35,14 +39,14 @@ double flywheel_speed = 0;
 double flywheel_current_velocity = 0;
 
 // FeedForward Constants
-double kP = 0.1;
-double kI = 0.0;
-double kD = 0.0;
-double kF = 0.1;
-
-double error, integral, derivative, lastError;
-double lastTime, deltaTime;
+const double kP = 0.5;
+const double kI = 0.1;
+const double kD = 0.2;
+const double kF = 0.4;
+const double max_speed = 600;
+double error, lastError, derivative, integral, targetVelocity, currentVelocity,
+    power, voltage;
 
 // Motor Constants
 double intake_in_speed = 100;
-double intake_out_speed = 33;
+double intake_out_speed = -33;

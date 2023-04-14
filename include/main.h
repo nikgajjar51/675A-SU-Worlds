@@ -48,7 +48,6 @@
 #include "675A/op_control_functions.hpp"
 #include "675A/programming_skills.hpp"
 #include "675A/robot_config.hpp"
-#include "675A/test_autons.hpp"
 #include "EZ-Template/api.hpp"
 
 // More includes here...

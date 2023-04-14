@@ -189,8 +189,8 @@
       }
     },
     "upload_options": {
-      "slot": 1,
-      "icon": "alien",
+      "slot": 3,
+      "icon": "robot",
       "description": "Y'all better watch out for us..."
     }
   }
