@@ -14,71 +14,71 @@ Team 675A is a VEX VRC Robotics Team based in Lawrenceville, Georgia.
 
 ### Spin Up
 
-Tournament Champions x1
+###### Champions x1
 
-Tournament Finalists x1
+###### Tournament Finalists x1
 
-Design Award x2
+###### Design Award x2
 
-Amaze Award x1
+###### Amaze Award x1
 
-Sportsmanship Award x1
+###### Sportsmanship Award x1
 
 ### Tipping Point
 
-Tournament Champions x2
+###### Tournament Champions x2
 
-Tournament Finalists x2
+###### Tournament Finalists x2
 
-Robot Skills Champion x1
+###### Robot Skills Champion x1
 
-Excellence Award x7
+###### Excellence Award x7
 
-Design Award x2
+###### Design Award x2
 
-Amaze Award x1
+###### Amaze Award x1
 
 ### Tower Takeover
 
-Tournament Champions x1
+###### Tournament Champions x1
 
-Excellence Award x1
+###### Excellence Award x1
 
-Design Award x1
+###### Design Award x1
 
 ### Turning Point
 
-Tournament Finalists x1
+###### Tournament Finalists x1
 
-Tournament Semifinalists x1
+###### Tournament Semifinalists x1
 
-Design Award x1
+###### Design Award x1
 
 ### In the Zone
 
-Tournament Champions x2
+###### Tournament Champions x2
 
-Tournament Finalists x2
+###### Tournament Finalists x2
 
-Excellence Award x2
+###### Excellence Award x2
 
-Design Award x1
+###### Design Award x1
 
 ### Starstruck
 
-Design Award x1
+###### Design Award x1
 
 ### Nothing but Net
 
-Tournament Champions x1
+###### Tournament Champions x1
 
-Create Award x1
+###### Create Award x1
 
 ### Toss Up
 
-Tournament Champions x2
+###### Tournament Champions x2
 
-Design Award x1
+###### Design Award x1
 
 ## Code Goals
 
