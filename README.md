@@ -1,8 +1,7 @@
 ---
 title: 675A Worlds Code
 ---
-[![Build](https://github.com/nikgajjar51/675A-2022-2023-Worlds/actions/workflows/main.yml/badge.svg)](https://github.com/nikgajjar51/675A-2022-2023-Worlds/actions/workflows/main.yml)
-
+[![Build](https://github.com/nikgajjar51/675A-SU-Worlds/actions/workflows/main.yml/badge.svg)](https://github.com/nikgajjar51/675A-SU-Worlds/actions/workflows/main.yml)
 # Team 675A
 <!--Add Team Picture--->
 
