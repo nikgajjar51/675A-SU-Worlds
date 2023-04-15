@@ -1,5 +1,5 @@
+#include "constants.hpp"
 #include "main.h"
-#include "op_control_functions.hpp"
 using namespace pros;
 int get_flywheel_temp() { return flywheel.get_temperature(); }
 int get_intake_temp() { return intake.get_temperature(); }
@@ -8,13 +8,13 @@ void flywheel_power(double percent) { flywheel.move(120 * percent); }
 void intake_power(double percent) { intake.move(120 * percent); }
 void feedforward_control_function(double target_speed) {
   currentVelocity = get_flywheel_velocity();
-  error = targetVelocity - currentVelocity;
+  error = target_speed - currentVelocity;
   derivative = error - lastError;
-  integral += error;
+  integral = integral + error;
   power = (kP * error) + (kI * integral) + (kD * derivative);
-  voltage = (targetVelocity * kF) + power;
-  voltage = (voltage > max_speed) ? max_speed : voltage;
+  voltage = (target_speed * kF) + power;
   flywheel.move_voltage(voltage);
+  std::cout << voltage << std::endl;
   lastError = error;
 }
 void autonomous_data_export() {

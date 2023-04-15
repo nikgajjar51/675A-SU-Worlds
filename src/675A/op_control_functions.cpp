@@ -10,10 +10,12 @@ void flywheel_control_function() {
   if (is_flywheel_running) {
     if (is_tongue_up) {
       tongue_pneumatic.set_value(true);
-      flywheel.move_velocity(500);
+      // flywheel.move_velocity(425);
+      feedforward_control_function(425);
     } else {
       tongue_pneumatic.set_value(false);
-      flywheel.move_velocity(400);
+      // flywheel.move_velocity(500);
+      feedforward_control_function(500);
     }
   } else if (!is_flywheel_running) {
     flywheel.move_velocity(0);
