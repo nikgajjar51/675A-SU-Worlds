@@ -49,4 +49,4 @@ double error, lastError, derivative, integral, targetVelocity, currentVelocity,
 
 // Motor Constants
 double intake_in_speed = 100;
-double intake_out_speed = -33;
+double intake_out_speed = -100;

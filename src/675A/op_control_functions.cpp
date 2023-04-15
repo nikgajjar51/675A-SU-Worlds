@@ -4,20 +4,19 @@ void flywheel_control_function() {
   if (master.get_digital_new_press(flywheel_toggle_button)) {
     is_flywheel_running = !is_flywheel_running;
   }
-  if (is_flywheel_running) {
-    flywheel.move_velocity(500);
-  } else if (!is_flywheel_running) {
-    flywheel.move_velocity(0);
-  }
-}
-void tongue_control_function() {
   if (master.get_digital_new_press(tongue_toggle_button)) {
     is_tongue_up = !is_tongue_up;
   }
-  if (is_tongue_up) {
-    tongue_pneumatic.set_value(true);
-  } else if (!is_tongue_up) {
-    tongue_pneumatic.set_value(false);
+  if (is_flywheel_running) {
+    if (is_tongue_up) {
+      tongue_pneumatic.set_value(true);
+      flywheel.move_velocity(500);
+    } else {
+      tongue_pneumatic.set_value(false);
+      flywheel.move_velocity(400);
+    }
+  } else if (!is_flywheel_running) {
+    flywheel.move_velocity(0);
   }
 }
 void intake_clamp_control_function() {

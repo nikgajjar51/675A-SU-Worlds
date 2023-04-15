@@ -1,5 +1,4 @@
 #include "main.h"
-#include "675A/op_control_functions.hpp"
 using namespace pros;
 // Chassis constructor
 Drive chassis(
@@ -8,7 +7,7 @@ Drive chassis(
     // Right Chassis Ports (negative port will reverse it!)
     {20, 19, -18},
     // IMU Port
-    21,
+    2,
     // Wheel Diameter (Remember, 4" wheels are actually 4.125!)
     2.75,
     // Cartridge RPM
@@ -52,7 +51,6 @@ void opcontrol() {
   chassis.set_drive_brake(E_MOTOR_BRAKE_COAST);
   while (true) {
     flywheel_control_function();
-    tongue_control_function();
     chassis.arcade_standard(ez::SPLIT);
     delay(ez::util::DELAY_TIME);
   }

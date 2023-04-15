@@ -3,9 +3,9 @@
 using namespace pros;
 extern Motor flywheel;
 extern Motor intake;
-extern ADIAnalogOut intake_pneumatic;
-extern ADIAnalogOut endgame_pnematic;
-extern ADIAnalogOut tongue_pneumatic;
+extern ADIDigitalOut intake_pneumatic;
+extern ADIDigitalOut endgame_pnematic;
+extern ADIDigitalOut tongue_pneumatic;
 extern controller_digital_e_t flywheel_toggle_button;
 extern controller_digital_e_t tongue_toggle_button;
 extern controller_digital_e_t intake_clamp_toggle_button;

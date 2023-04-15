@@ -83,7 +83,8 @@ bin/675A/robot_config.cpp.o: src/675A/robot_config.cpp include/main.h \
  include/EZ-Template/api.hpp include/EZ-Template/PID.hpp \
  include/EZ-Template/util.hpp include/EZ-Template/auton.hpp \
  include/EZ-Template/auton_selector.hpp \
- include/EZ-Template/drive/drive.hpp include/EZ-Template/sdcard.hpp
+ include/EZ-Template/drive/drive.hpp include/EZ-Template/sdcard.hpp \
+ include/pros/adi.hpp
 include/main.h:
 include/api.h:
 include/pros/adi.h:
@@ -252,3 +253,4 @@ include/EZ-Template/auton.hpp:
 include/EZ-Template/auton_selector.hpp:
 include/EZ-Template/drive/drive.hpp:
 include/EZ-Template/sdcard.hpp:
+include/pros/adi.hpp:
