@@ -11,9 +11,9 @@ void feedforward_control_function(double target_speed) {
   error = target_speed - currentVelocity;
   derivative = error - lastError;
   integral = integral + error;
-  power = (kP * error) + (kI * integral) + (kD * derivative);
-  voltage = (target_speed * kF) + power;
-  flywheel.move_voltage(voltage);
+  power =
+      (kP * error) + (kI * integral) + (kD * derivative) + (target_speed * kF);
+  flywheel.move_voltage(power);
   std::cout << voltage << std::endl;
   lastError = error;
 }

@@ -344,11 +344,11 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/675A/op_control_functions.cpp.o",
-            "src\\675A\\op_control_functions.cpp"
+            "bin/675A/constants.cpp.o",
+            "src\\675A\\constants.cpp"
         ],
         "directory": "C:\\Users\\Nikhil Gajjar\\Documents\\Code\\675",
-        "file": "src\\675A\\op_control_functions.cpp"
+        "file": "src\\675A\\constants.cpp"
     },
     {
         "arguments": [
@@ -383,10 +383,10 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/675A/constants.cpp.o",
-            "src\\675A\\constants.cpp"
+            "bin/675A/op_control_functions.cpp.o",
+            "src\\675A\\op_control_functions.cpp"
         ],
         "directory": "C:\\Users\\Nikhil Gajjar\\Documents\\Code\\675",
-        "file": "src\\675A\\constants.cpp"
+        "file": "src\\675A\\op_control_functions.cpp"
     }
 ]

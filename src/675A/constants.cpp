@@ -39,7 +39,7 @@ double flywheel_speed = 0;
 double flywheel_current_velocity = 0;
 
 // FeedForward Constants
-const double kP = .8;
+const double kP = .3;
 const double kI = .1;
 const double kD = .5;
 const double kF = 1.2;
