@@ -1,11 +1,12 @@
 #include "main.h"
+#include "675A/op_control_functions.hpp"
 using namespace pros;
 // Chassis constructor
 Drive chassis(
     // Left Chassis Ports (negative port will reverse it!)
-    {11, 12, -13},
+    {13, -12, -11},
     // Right Chassis Ports (negative port will reverse it!)
-    {-18, 19, 20},
+    {20, 19, -18},
     // IMU Port
     21,
     // Wheel Diameter (Remember, 4" wheels are actually 4.125!)
@@ -15,14 +16,11 @@ Drive chassis(
     // External Gear Ratio
     .8);
 void initialize() {
-  autonomous_data_export_task.suspend();
-  drive_data_export_task.suspend();
-  intake_task.suspend();
-  endgame_task.suspend();
+  master.clear();
   ez::print_ez_template();
   delay(500);
   chassis.toggle_modify_curve_with_controller(false);
-  chassis.set_active_brake(0.1);
+  chassis.set_active_brake(0);
   chassis.set_curve_default(0, 0);
   chassis_default_constants();
   chassis_exit_condition_defaults();
@@ -33,14 +31,12 @@ void initialize() {
   ez::as::initialize();
 }
 
-void disabled() {}
-void competition_initialize() {}
+void disabled() { master.clear(); }
+void competition_initialize() { master.clear(); }
 
 void autonomous() {
-  autonomous_data_export_task.resume();
-  drive_data_export_task.suspend();
-  intake_task.suspend();
-  endgame_task.suspend();
+  master.clear();
+  Task autonomous_data_export_task(autonomous_data_export);
   chassis.reset_pid_targets();
   chassis.reset_gyro();
   chassis.reset_drive_sensor();
@@ -49,13 +45,14 @@ void autonomous() {
 }
 
 void opcontrol() {
-  autonomous_data_export_task.suspend();
-  drive_data_export_task.resume();
-  intake_task.resume();
-  endgame_task.resume();
-  chassis.set_drive_brake(E_MOTOR_BRAKE_HOLD);
+  master.clear();
+  Task drive_data_export_task(driver_data_export);
+  Task intake_task(intake_control_function);
+  Task endgame_task(endgame_control_function);
+  chassis.set_drive_brake(E_MOTOR_BRAKE_COAST);
   while (true) {
     flywheel_control_function();
+    tongue_control_function();
     chassis.arcade_standard(ez::SPLIT);
     delay(ez::util::DELAY_TIME);
   }

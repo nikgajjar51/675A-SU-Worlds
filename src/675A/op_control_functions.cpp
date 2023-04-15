@@ -1,10 +1,7 @@
-#include "constants.hpp"
-#include "helper_functions.hpp"
 #include "main.h"
-#include "robot_config.hpp"
 using namespace pros;
 void flywheel_control_function() {
-  if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
+  if (master.get_digital_new_press(flywheel_toggle_button)) {
     is_flywheel_running = !is_flywheel_running;
   }
   if (is_flywheel_running) {
@@ -14,30 +11,18 @@ void flywheel_control_function() {
   }
 }
 void tongue_control_function() {
-  while (true) {
-    if (master.get_digital_new_press(tongue_toggle_button)) {
-      is_tongue_up = !is_tongue_up;
-    }
-    if (is_flywheel_running) {
-      flywheel_pid(7600);
-      if (is_tongue_up) {
-        tongue_pneumatic.set_value(false);
-      } else {
-        tongue_pneumatic.set_value(true);
-      }
-    } else {
-      flywheel_power(0);
-    }
-    delay(ez::util::DELAY_TIME);
+  if (master.get_digital_new_press(tongue_toggle_button)) {
+    is_tongue_up = !is_tongue_up;
   }
-}
-void feedforward_control_function() {
-  if (master.get_digital(flywheel_toggle_button)) {
-    flywheel_feedforward_pid(7000);
+  if (is_tongue_up) {
+    tongue_pneumatic.set_value(true);
+  } else if (!is_tongue_up) {
+    tongue_pneumatic.set_value(false);
   }
 }
 void intake_clamp_control_function() {
-  if (master.get_digital(intake_clamp_toggle_button)) {
+
+  if (master.get_digital_new_press(intake_clamp_toggle_button)) {
     if (intake_clamp_toggle) {
       intake_clamp_state = !intake_clamp_state;
       intake_clamp_position = "In ";
@@ -86,7 +71,3 @@ void drive_lock_control_function() {
     }
   }
 }
-Task autonomous_data_export_task(autonomous_data_export);
-Task drive_data_export_task(driver_data_export);
-Task intake_task(intake_control_function);
-Task endgame_task(endgame_control_function);

@@ -6,7 +6,7 @@ const double low_speed_multiplier = .5, normal_speed_multiplier = 1,
 std::string drive_lock_type = "Coast", alliance = "Red";
 bool drive_lock_toggle = false, intake_clamp_toggle = true,
      intake_clamp_state = true, is_flywheel_running = false,
-     is_tongue_up = true;
+     is_tongue_up = false;
 void chassis_default_constants() {
   chassis.set_slew_min_power(80, 80);
   chassis.set_slew_distance(7, 7);
