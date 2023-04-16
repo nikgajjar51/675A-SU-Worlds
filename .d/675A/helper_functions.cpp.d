@@ -1,9 +1,9 @@
 bin/675A/helper_functions.cpp.o: src/675A/helper_functions.cpp \
- include/675A/constants.hpp include/api.h include/pros/adi.h \
- include/pros/colors.h include/pros/distance.h include/pros/error.h \
- include/pros/ext_adi.h include/pros/adi.h include/pros/adi.h \
- include/pros/gps.h include/pros/imu.h include/pros/link.h \
- include/pros/llemu.h include/display/lvgl.h include/display/lv_version.h \
+ include/main.h include/api.h include/pros/adi.h include/pros/colors.h \
+ include/pros/distance.h include/pros/error.h include/pros/ext_adi.h \
+ include/pros/adi.h include/pros/adi.h include/pros/gps.h \
+ include/pros/imu.h include/pros/link.h include/pros/llemu.h \
+ include/display/lvgl.h include/display/lv_version.h \
  include/display/lv_misc/lv_log.h include/display/lv_conf.h \
  include/display/lv_conf_checker.h include/display/lv_misc/lv_task.h \
  include/display/lv_misc/lv_mem.h include/display/lv_misc/lv_log.h \
@@ -76,7 +76,7 @@ bin/675A/helper_functions.cpp.o: src/675A/helper_functions.cpp \
  include/pros/rotation.hpp include/pros/rotation.h include/pros/rtos.hpp \
  include/pros/screen.hpp include/pros/screen.h include/pros/vision.hpp \
  include/pros/vision.h include/pros/link.hpp include/pros/link.h \
- include/main.h include/api.h include/675A/flywheel_pid.hpp \
+ include/675A/constants.hpp include/api.h include/675A/flywheel_pid.hpp \
  include/675A/helper_functions.hpp include/675A/match_autons.hpp \
  include/675A/op_control_functions.hpp \
  include/675A/programming_skills.hpp include/675A/robot_config.hpp \
@@ -84,7 +84,7 @@ bin/675A/helper_functions.cpp.o: src/675A/helper_functions.cpp \
  include/EZ-Template/util.hpp include/EZ-Template/auton.hpp \
  include/EZ-Template/auton_selector.hpp \
  include/EZ-Template/drive/drive.hpp include/EZ-Template/sdcard.hpp
-include/675A/constants.hpp:
+include/main.h:
 include/api.h:
 include/pros/adi.h:
 include/pros/colors.h:
@@ -237,7 +237,7 @@ include/pros/vision.hpp:
 include/pros/vision.h:
 include/pros/link.hpp:
 include/pros/link.h:
-include/main.h:
+include/675A/constants.hpp:
 include/api.h:
 include/675A/flywheel_pid.hpp:
 include/675A/helper_functions.hpp:

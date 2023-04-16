@@ -1,4 +1,3 @@
-#include "constants.hpp"
 #include "main.h"
 using namespace pros;
 int get_flywheel_temp() { return flywheel.get_temperature(); }

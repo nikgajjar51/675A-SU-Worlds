@@ -10,7 +10,7 @@ void flywheel_control_function() {
   if (is_flywheel_running) {
     if (is_tongue_up) {
       tongue_pneumatic.set_value(true);
-      feedforward_control_function(500);
+      feedforward_control_function(250);
     } else {
       tongue_pneumatic.set_value(false);
       feedforward_control_function(425);
