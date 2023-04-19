@@ -1,25 +1,27 @@
 #include "main.h"
 using namespace pros;
 void flywheel_control_function() {
-  if (master.get_digital_new_press(flywheel_toggle_button)) {
+  if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_B)) {
     is_flywheel_running = !is_flywheel_running;
   }
-  if (master.get_digital_new_press(tongue_toggle_button)) {
+  if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_R1)) {
     is_tongue_up = !is_tongue_up;
   }
   if (is_flywheel_running) {
     if (is_tongue_up) {
       tongue_pneumatic.set_value(true);
-      // feedforward_control_function(250);
-      pid_control(250);
+      feedforward_control_function(425);
+      // pid_control(250);
+      // flywheel.move_velocity(600);
 
     } else {
       tongue_pneumatic.set_value(false);
-      // feedforward_control_function(425);
-      pid_control(250);
+      feedforward_control_function(550);
+      // pid_control(425);
+      // flywheel.move_velocity(600);
     }
   } else if (!is_flywheel_running) {
-    flywheel.move_velocity(0);
+    flywheel.move_voltage(0);
   }
 }
 void intake_clamp_control_function() {

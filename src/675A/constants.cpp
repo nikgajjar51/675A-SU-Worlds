@@ -39,12 +39,12 @@ double flywheel_speed = 0;
 double flywheel_current_velocity = 0;
 
 // FeedForward Constants
-const double kP = .3;
+const double kP = 1.2;
 const double kI = .1;
-const double kD = .5;
+const double kD = .7;
 const double kF = 1.2;
 double error, lastError, derivative, integral, currentVelocity, power, voltage;
 
 // Motor Constants
 double intake_in_speed = 100;
-double intake_out_speed = -100;
+double intake_out_speed = -50;

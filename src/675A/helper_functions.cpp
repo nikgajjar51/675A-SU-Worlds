@@ -23,6 +23,9 @@ void pid_control(double target_value) {
   double output = kP1 * error - kV1 * target_value;
   flywheel.move_voltage(output);
 }
+void joseph_code(double input) {
+  
+}
 void autonomous_data_export() {
   while (true) {
     master.print(0, 0, "Alliance: %s", alliance);
