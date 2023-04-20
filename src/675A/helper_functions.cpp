@@ -16,16 +16,6 @@ void feedforward_control_function(double target_speed) {
   std::cout << voltage << std::endl;
   lastError = error;
 }
-void pid_control(double target_value) {
-  double kP1 = .5;
-  double kV1 = 2;
-  double error = target_value - get_flywheel_velocity();
-  double output = kP1 * error - kV1 * target_value;
-  flywheel.move_voltage(output);
-}
-void joseph_code(double input) {
-  
-}
 void autonomous_data_export() {
   while (true) {
     master.print(0, 0, "Alliance: %s", alliance);

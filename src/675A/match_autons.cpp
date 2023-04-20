@@ -1,9 +1,4 @@
-#include "constants.hpp"
-#include "helper_functions.hpp"
 #include "main.h"
-#include "pros/rtos.h"
-#include "pros/rtos.hpp"
-#include "robot_config.hpp"
 using namespace pros;
 void drive_example() {
   chassis.set_drive_pid(24, 110, true);

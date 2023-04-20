@@ -27,17 +27,6 @@ void chassis_modified_exit_condition() {
   chassis.set_exit_condition(chassis.drive_exit, 80, 50, 300, 150, 500, 500);
 }
 
-// PID Constants
-#define flywheel_smooth_size 3
-#define flywheel_integral_smoothing 2
-double flywheel_speeds[flywheel_smooth_size];
-double flywheel_kP = 1.0;
-double flywheel_kI = (1.0 / flywheel_integral_smoothing);
-double flywheel_integral = 0;
-double flywheel_error = 0;
-double flywheel_speed = 0;
-double flywheel_current_velocity = 0;
-
 // FeedForward Constants
 const double kP = 1.2;
 const double kI = .1;
