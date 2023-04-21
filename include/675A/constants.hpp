@@ -15,9 +15,8 @@ void chassis_exit_condition_defaults();
 void chassis_modified_exit_condition();
 
 // Feed Forward Constants
-extern const double kP, kI, kD, kF;
-extern double error, lastError, derivative, integral, currentVelocity, power,
-    voltage;
+extern const double kP, kF;
+extern double error, lastError, derivative, integral, currentVelocity, power;
 
 // Motor Constants
 extern double intake_in_speed, intake_out_speed;

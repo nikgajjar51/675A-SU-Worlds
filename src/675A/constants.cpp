@@ -1,3 +1,4 @@
+#include "constants.hpp"
 #include "main.h"
 using namespace pros;
 const int drive_speed = 70, turn_speed = 75, swerve_speed = 50;
@@ -29,10 +30,8 @@ void chassis_modified_exit_condition() {
 
 // FeedForward Constants
 const double kP = 1.2;
-const double kI = .1;
-const double kD = .7;
 const double kF = 1.2;
-double error, lastError, derivative, integral, currentVelocity, power, voltage;
+double error, lastError, derivative, integral, currentVelocity, power;
 
 // Motor Constants
 double intake_in_speed = 100;
