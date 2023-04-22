@@ -1,4 +1,3 @@
-#include "constants.hpp"
 #include "main.h"
 using namespace pros;
 int get_flywheel_temp() { return flywheel.get_temperature(); }
@@ -13,6 +12,17 @@ void feedforward_control_function(double target_speed) {
   flywheel.move_voltage(power);
   std::cout << power << std::endl;
   lastError = error;
+}
+void pid_control_function_2(double target_speed) {
+  p_currentVelocity = get_flywheel_velocity();
+  p_error = target_speed - p_currentVelocity;
+  p_derivative = p_error - p_last_error;
+  p_integral = p_integral + p_error;
+  p_power = (p_kP * p_error) + (p_kI * p_integral) + (p_kD * p_derivative) +
+            (target_speed * p_kF);
+  flywheel.move_voltage(p_power);
+  std::cout << p_power << std::endl;
+  p_last_error = p_error;
 }
 void autonomous_data_export() {
   while (true) {

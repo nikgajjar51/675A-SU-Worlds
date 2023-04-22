@@ -1,5 +1,6 @@
 #include "constants.hpp"
 #include "main.h"
+#include <ratio>
 using namespace pros;
 const int drive_speed = 70, turn_speed = 75, swerve_speed = 50;
 const double low_speed_multiplier = .5, normal_speed_multiplier = 1,
@@ -33,6 +34,13 @@ const double kP = 1.2;
 const double kF = 1.2;
 double error, lastError, derivative, integral, currentVelocity, power;
 
+// Old PID  Constants
+const double p_kP = 1.2;
+const double p_kI = .1;
+const double p_kD = .7;
+const double p_kF = 0; // was 1.2
+double p_error, p_last_error, p_derivative, p_integral,
+    p_currentVelocity, p_power;
 // Motor Constants
 double intake_in_speed = 100;
 double intake_out_speed = -50;

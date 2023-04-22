@@ -1,5 +1,6 @@
 #pragma once
 #include "api.h"
+#include "constants.hpp"
 
 extern const int drive_speed, turn_speed, swerve_speed;
 extern const double low_speed_multiplier, normal_speed_multiplier,
@@ -17,6 +18,10 @@ void chassis_modified_exit_condition();
 // Feed Forward Constants
 extern const double kP, kF;
 extern double error, lastError, derivative, integral, currentVelocity, power;
+
+// Old Feed Forward Constants
+extern const double p_kP, p_kI, p_kD, p_kF;
+extern double p_error, p_last_error, p_derivative, p_integral, p_currentVelocity, p_power;
 
 // Motor Constants
 extern double intake_in_speed, intake_out_speed;

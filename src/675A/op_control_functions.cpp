@@ -10,15 +10,13 @@ void flywheel_control_function() {
   if (is_flywheel_running) {
     if (is_tongue_up) {
       tongue_pneumatic.set_value(true);
-      feedforward_control_function(425);
-      // pid_control(250);
-      // flywheel.move_velocity(600);
+      feedforward_control_function(425); 
+      pid_control_function_2(425); // OLD PID
 
     } else {
       tongue_pneumatic.set_value(false);
       feedforward_control_function(550);
-      // pid_control(425);
-      // flywheel.move_velocity(600);
+      pid_control_function_2(550); // OLD PID 
     }
   } else if (!is_flywheel_running) {
     flywheel.move_voltage(0);
