@@ -1,6 +1,8 @@
 #include "main.h"
 using namespace pros;
 void flywheel_control_function() {
+  while (true) {
+  }
   if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_B)) {
     is_flywheel_running = !is_flywheel_running;
   }
@@ -24,23 +26,12 @@ void flywheel_control_function() {
     flywheel.move_voltage(0);
   }
 }
-void intake_clamp_control_function() {
-
-  if (master.get_digital_new_press(intake_clamp_toggle_button)) {
-    if (intake_clamp_toggle) {
-      intake_clamp_state = !intake_clamp_state;
-      intake_clamp_position = "In ";
-    } else if (intake_clamp_toggle) {
-      intake_clamp_state = !intake_clamp_state;
-      intake_clamp_position = "Out";
-    }
-  }
-}
 void intake_control_function() {
   while (true) {
     if (master.get_digital(intake_in_button)) {
       intake_power(intake_in_speed);
     } else if (master.get_digital(intake_out_button)) {
+      flywheel.move_voltage(12000);
       intake_power(intake_out_speed);
     } else {
       intake.move_velocity(0);
