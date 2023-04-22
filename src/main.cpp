@@ -1,4 +1,5 @@
 #include "main.h"
+#include "675A/op_control_functions.hpp"
 using namespace pros;
 // Chassis constructor
 Drive chassis(
@@ -48,9 +49,10 @@ void opcontrol() {
   Task drive_data_export_task(driver_data_export);
   Task intake_task(intake_control_function);
   Task endgame_task(endgame_control_function);
+  Task flywheel_task(flywheel_control_function);
   chassis.set_drive_brake(E_MOTOR_BRAKE_COAST);
   while (true) {
-    flywheel_control_function();
+    // flywheel_control_function();
     chassis.arcade_standard(ez::SPLIT);
     delay(ez::util::DELAY_TIME);
   }

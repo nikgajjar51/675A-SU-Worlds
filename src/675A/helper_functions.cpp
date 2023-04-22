@@ -26,7 +26,7 @@ void pid_control_function_2(double target_speed) {
   p_last_error = p_error;
 }
 void bang_bang_control_function(double target_speed) {
-  if (get_flywheel_velocity() < target_speed) {
+  if ((get_flywheel_velocity() * 6) < target_speed) {
     flywheel.move_voltage(12000);
   } else {
     flywheel.move_voltage((target_speed / 3600) * 12000);
