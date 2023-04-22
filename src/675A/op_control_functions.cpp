@@ -1,4 +1,6 @@
+#include "constants.hpp"
 #include "main.h"
+#include "robot_config.hpp"
 using namespace pros;
 void flywheel_control_function() {
   while (true) {
@@ -31,7 +33,9 @@ void intake_control_function() {
     if (master.get_digital(intake_in_button)) {
       intake_power(intake_in_speed);
     } else if (master.get_digital(intake_out_button)) {
-      flywheel.move_voltage(12000);
+      if(is_flywheel_running){
+        flywheel.move_voltage(12000); // flywheel Shoots when intaking
+      }
       intake_power(intake_out_speed);
     } else {
       intake.move_velocity(0);
