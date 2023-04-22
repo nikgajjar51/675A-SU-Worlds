@@ -1,4 +1,5 @@
 #include "main.h"
+#include "robot_config.hpp"
 using namespace pros;
 int get_flywheel_temp() { return flywheel.get_temperature(); }
 int get_intake_temp() { return intake.get_temperature(); }
@@ -23,6 +24,13 @@ void pid_control_function_2(double target_speed) {
   flywheel.move_voltage(p_power);
   std::cout << p_power << std::endl;
   p_last_error = p_error;
+}
+void bang_bang_control_function(double target_speed) {
+  if (get_flywheel_velocity() < target_speed) {
+    flywheel.move_voltage(12000);
+  } else {
+    flywheel.move_voltage((target_speed / 3600) * 12000);
+  }
 }
 void autonomous_data_export() {
   while (true) {
