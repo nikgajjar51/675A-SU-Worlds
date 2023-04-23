@@ -53,7 +53,8 @@ void opcontrol() {
   Task tongue_task(tongue_control_function);
   chassis.set_drive_brake(E_MOTOR_BRAKE_COAST);
   while (true) {
-    // shooting_speed is voltage that it will shoot at when outtaking
+    // shooting_speed_up is voltage that it will shoot at when outtaking with tongue up
+    // shooting_speed_down is voltage that it will shoot at when outtaking with tongue down
     // bang_bang_speed is speed that bang bang will run at when not outtaking
     flywheel_function(12000, 9000, 2500);
     chassis.arcade_standard(ez::SPLIT);
