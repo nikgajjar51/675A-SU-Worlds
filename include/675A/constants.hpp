@@ -1,6 +1,5 @@
 #pragma once
 #include "api.h"
-#include "constants.hpp"
 
 extern const int drive_speed, turn_speed, swerve_speed;
 extern const double low_speed_multiplier, normal_speed_multiplier,
@@ -9,7 +8,7 @@ extern const double low_speed_multiplier, normal_speed_multiplier,
 // Robot Constants and Toggles
 extern std::string drive_lock_type, alliance, intake_clamp_position;
 extern bool drive_lock_toggle, intake_clamp_toggle, intake_clamp_state,
-    is_flywheel_running, is_tongue_up;
+    is_flywheel_running, is_tongue_up, is_outtaking;
 // Chassis PID's
 void chassis_default_constants();
 void chassis_exit_condition_defaults();

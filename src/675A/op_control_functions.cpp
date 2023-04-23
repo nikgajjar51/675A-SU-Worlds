@@ -1,28 +1,33 @@
-#include "constants.hpp"
 #include "main.h"
-#include "robot_config.hpp"
 using namespace pros;
 void flywheel_control_function() {
   while (true) {
+    if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_B)) {
+      is_flywheel_running = !is_flywheel_running;
+    }
+    delay(ez::util::DELAY_TIME);
   }
-  if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_B)) {
-    is_flywheel_running = !is_flywheel_running;
-  }
-  if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_R1)) {
-    is_tongue_up = !is_tongue_up;
-  }
-  if (is_flywheel_running) {
-    if (is_tongue_up) {
-      tongue_pneumatic.set_value(true);
-      // feedforward_control_function(425);
-      // pid_control_function_2(425); // OLD PID
-      bang_bang_control_function(2000); // Target Speed out of 3600
+}
+void tongue_control_function() {
+  while (true) {
+    if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_R1)) {
+      is_tongue_up = !is_tongue_up;
+      if (is_tongue_up) {
+        tongue_pneumatic.set_value(true);
 
-    } else {
-      tongue_pneumatic.set_value(false);
-      // feedforward_control_function(550);
-      // pid_control_function_2(550); // OLD PID
-      bang_bang_control_function(3300); // Target Speed out of 3600
+      } else if (!is_tongue_up) {
+        tongue_pneumatic.set_value(false);
+      }
+    }
+    delay(ez::util::DELAY_TIME);
+  }
+}
+void flywheel_function(double shooting_speed, double bang_bang_speed) {
+  if (is_flywheel_running) {
+    if (!is_outtaking) {
+      bang_bang_control_function(bang_bang_speed); // Target Speed of Bang Bang
+    } else if (is_outtaking) {
+      flywheel.move_velocity(shooting_speed);
     }
   } else if (!is_flywheel_running) {
     flywheel.move_voltage(0);
@@ -31,13 +36,13 @@ void flywheel_control_function() {
 void intake_control_function() {
   while (true) {
     if (master.get_digital(intake_in_button)) {
+      is_outtaking = false;
       intake_power(intake_in_speed);
     } else if (master.get_digital(intake_out_button)) {
-      if(is_flywheel_running){
-        flywheel.move_voltage(12000); // flywheel Shoots when intaking
-      }
+      is_outtaking = true;
       intake_power(intake_out_speed);
     } else {
+      is_outtaking = false;
       intake.move_velocity(0);
     }
     delay(ez::util::DELAY_TIME);

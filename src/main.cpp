@@ -50,8 +50,12 @@ void opcontrol() {
   Task intake_task(intake_control_function);
   Task endgame_task(endgame_control_function);
   Task flywheel_task(flywheel_control_function);
+  Task tongue_task(tongue_control_function);
   chassis.set_drive_brake(E_MOTOR_BRAKE_COAST);
   while (true) {
+    // shooting_speed is voltage that it will shoot at when outtaking
+    // bang_bang_speed is speed that bang bang will run at when not outtaking
+    flywheel_function(12000, 2500);
     chassis.arcade_standard(ez::SPLIT);
     delay(ez::util::DELAY_TIME);
   }
