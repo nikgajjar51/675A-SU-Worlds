@@ -55,7 +55,7 @@ void opcontrol() {
   while (true) {
     // shooting_speed is voltage that it will shoot at when outtaking
     // bang_bang_speed is speed that bang bang will run at when not outtaking
-    flywheel_function(12000, 2500);
+    flywheel_function(12000, 9000, 2500);
     chassis.arcade_standard(ez::SPLIT);
     delay(ez::util::DELAY_TIME);
   }

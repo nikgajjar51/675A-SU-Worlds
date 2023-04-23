@@ -3,7 +3,8 @@
 using namespace pros;
 void flywheel_control_function();
 void tongue_control_function();
-void flywheel_function(double shooting_speed, double bang_bang_speed);
+void flywheel_function(double shooting_speed_up, double shooting_speed_down,
+                       double bang_bang_speed);
 void intake_clamp_control_function();
 void intake_control_function();
 void endgame_control_function();

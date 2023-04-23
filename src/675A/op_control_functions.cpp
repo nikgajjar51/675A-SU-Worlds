@@ -1,3 +1,4 @@
+#include "constants.hpp"
 #include "main.h"
 using namespace pros;
 void flywheel_control_function() {
@@ -22,12 +23,18 @@ void tongue_control_function() {
     delay(ez::util::DELAY_TIME);
   }
 }
-void flywheel_function(double shooting_speed, double bang_bang_speed) {
+void flywheel_function(double shooting_speed_up, double shooting_speed_down,
+                       double bang_bang_speed) {
   if (is_flywheel_running) {
     if (!is_outtaking) {
       bang_bang_control_function(bang_bang_speed); // Target Speed of Bang Bang
     } else if (is_outtaking) {
-      flywheel.move_velocity(shooting_speed);
+      if (is_tongue_up) {
+        flywheel.move_velocity(shooting_speed_up);
+      }
+      if (!is_tongue_up) {
+        flywheel.move_velocity(shooting_speed_down);
+      }
     }
   } else if (!is_flywheel_running) {
     flywheel.move_voltage(0);
