@@ -13,4 +13,4 @@ extern controller_digital_e_t speed_toggle_button;
 extern controller_digital_e_t intake_in_button;
 extern controller_digital_e_t intake_out_button;
 extern controller_digital_e_t drive_lock_toggle_button;
-extern flywheel_controller flywheelflywheel;
+extern flywheel_controller flywheel;

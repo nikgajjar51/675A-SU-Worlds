@@ -57,7 +57,6 @@ void opcontrol() {
     tongue_up_speed = 3300;
     // tongue_down_speed is tongue down idle voltage
     tongue_down_speed = 2000;
-    flywheel_function();
     chassis.arcade_standard(ez::SPLIT);
     delay(ez::util::DELAY_TIME);
   }
