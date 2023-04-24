@@ -17,6 +17,8 @@ void flywheel_controller::set_mode(int mode) {
   flywheel_mode_guard.give();
 }
 void flywheel_controller::fly_control() {
+  uint32_t t = pros::millis();
+
   while (true){
     if (mode_ == 1) {
       if ((get_flywheel_velocity() * 6) < flywheel_target_rpm) {

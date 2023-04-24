@@ -9,7 +9,7 @@ public:
   void fire_discs();
 
 private:
-  pros::Mutex flywheel_rpm_guard
+  pros::Mutex flywheel_rpm_guard;
   pros::Mutex flywheel_mode_guard;
   double flywheel_target_rpm = 2600;
   int mode_ = 3;
