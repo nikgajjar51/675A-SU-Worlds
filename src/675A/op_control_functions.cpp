@@ -26,13 +26,13 @@ void tongue_control_function() {
 }
 void speed_control_function() {
   while (true) {
-    if (master.get_digital_new_press(speed_toggle_button)) {
+    if (master.get_digital_new_press(flywheel_toggle_button)) {
       if (!fly_off) {
         flywheel.set_mode(3);
         fly_off = true;
       } else {
         flywheel.set_mode(1);
-        fly_off = true;
+        fly_off = false;
       }
     }
   }
@@ -49,7 +49,11 @@ void intake_control_function() {
       is_outtaking = true;
       intake_power(intake_out_speed);
     } else {
-      flywheel.set_mode(1);
+      if (master.get_digital(speed_toggle_button)) {
+        flywheel.set_mode(2);
+      } else {
+        flywheel.set_mode(1);
+      }
       is_outtaking = false;
       intake_motor.move_velocity(0);
     }

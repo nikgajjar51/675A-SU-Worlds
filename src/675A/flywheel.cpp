@@ -42,7 +42,7 @@ void flywheel_controller::fire_discs(int numDisk, int fireTime) {
     for (int i = 0; i < numDisk; i++) {
         intake_motor = -70;
         pros::delay(100);
-        intake_motor = 100
+        intake_motor = 100;
         pros::delay(350);
         numDisk--;
     }
