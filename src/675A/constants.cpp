@@ -42,5 +42,5 @@ const double p_kF = 0; // was 1.2
 double p_error, p_last_error, p_derivative, p_integral, p_currentVelocity,
     p_power;
 // Motor Constants
-double intake_in_speed = 100;
-double intake_out_speed = -100;
+double intake_in_speed = 127;
+double intake_out_speed = -127;
