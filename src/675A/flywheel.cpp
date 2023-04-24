@@ -36,7 +36,7 @@ void flywheel_controller::fly_control() {
   }
 }
 
-void flywheel_controller::fire_discs(int numDisk, int fireTime) {
+void flywheel_controller::fire_discs(int numDisk) {
     set_mode(1);
 
     for (int i = 0; i < numDisk; i++) {
