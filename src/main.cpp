@@ -1,5 +1,4 @@
 #include "main.h"
-#include "675A/op_control_functions.hpp"
 using namespace pros;
 // Chassis constructor
 Drive chassis(
@@ -51,12 +50,18 @@ void opcontrol() {
   Task endgame_task(endgame_control_function);
   Task flywheel_task(flywheel_control_function);
   Task tongue_task(tongue_control_function);
+  Task speed_task(speed_control_function);
   chassis.set_drive_brake(E_MOTOR_BRAKE_COAST);
   while (true) {
-    // shooting_speed_up is voltage that it will shoot at when outtaking with tongue up
-    // shooting_speed_down is voltage that it will shoot at when outtaking with tongue down
+    // shooting_speed_high is voltage that it will shoot at when outtaking with
+    // tongue up
+    shooting_speed_high = 12000;
+    // shooting_speed_low is voltage that it will shoot at when outtaking with
+    // tongue down
+    shooting_speed_low = 9000;
     // bang_bang_speed is speed that bang bang will run at when not outtaking
-    flywheel_function(12000, 9000, 2500);
+    bang_bang_speed = 2500;
+    flywheel_function();
     chassis.arcade_standard(ez::SPLIT);
     delay(ez::util::DELAY_TIME);
   }

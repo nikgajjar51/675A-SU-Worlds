@@ -1,9 +1,8 @@
-#include "constants.hpp"
 #include "main.h"
 using namespace pros;
 void flywheel_control_function() {
   while (true) {
-    if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_B)) {
+    if (master.get_digital_new_press(flywheel_toggle_button)) {
       is_flywheel_running = !is_flywheel_running;
     }
     delay(ez::util::DELAY_TIME);
@@ -11,7 +10,7 @@ void flywheel_control_function() {
 }
 void tongue_control_function() {
   while (true) {
-    if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_R1)) {
+    if (master.get_digital_new_press(tongue_toggle_button)) {
       is_tongue_up = !is_tongue_up;
       if (is_tongue_up) {
         tongue_pneumatic.set_value(true);
@@ -23,18 +22,28 @@ void tongue_control_function() {
     delay(ez::util::DELAY_TIME);
   }
 }
-void flywheel_function(double shooting_speed_up, double shooting_speed_down,
-                       double bang_bang_speed) {
+void speed_control_function() {
+  if (master.get_digital(speed_toggle_button)) {
+    if (is_high_speed) {
+      is_high_speed = !is_high_speed;
+      shooting_speed = 12000;
+    } else if (!is_high_speed) {
+      is_high_speed = !is_high_speed;
+      if (is_tongue_up) {
+        shooting_speed = shooting_speed_high;
+      }
+      if (!is_tongue_up) {
+        shooting_speed = shooting_speed_low;
+      }
+    }
+  }
+}
+void flywheel_function() {
   if (is_flywheel_running) {
     if (!is_outtaking) {
       bang_bang_control_function(bang_bang_speed); // Target Speed of Bang Bang
     } else if (is_outtaking) {
-      if (is_tongue_up) {
-        flywheel.move_velocity(shooting_speed_up);
-      }
-      if (!is_tongue_up) {
-        flywheel.move_velocity(shooting_speed_down);
-      }
+      flywheel.move_voltage(shooting_speed);
     }
   } else if (!is_flywheel_running) {
     flywheel.move_voltage(0);

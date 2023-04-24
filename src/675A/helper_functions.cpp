@@ -1,5 +1,4 @@
 #include "main.h"
-#include "robot_config.hpp"
 using namespace pros;
 int get_flywheel_temp() { return flywheel.get_temperature(); }
 int get_intake_temp() { return intake.get_temperature(); }
