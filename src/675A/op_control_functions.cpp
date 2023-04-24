@@ -1,6 +1,6 @@
 #include "constants.hpp"
+#include "helper_functions.hpp"
 #include "main.h"
-#include "robot_config.hpp"
 using namespace pros;
 void flywheel_control_function() {
   while (true) {
@@ -39,7 +39,14 @@ void speed_control_function() {
 }
 void flywheel_function() {
   if (is_flywheel_running) {
-    flywheel.move_voltage(shooting_speed);
+    if (is_tongue_up) {
+      bang_bang_control_function(shooting_speed);
+
+    } else if (!is_tongue_up) {
+      bang_bang_control_function(shooting_speed);
+    } else {
+      flywheel.move_voltage(shooting_speed);
+    }
   } else if (!is_flywheel_running) {
     flywheel.move_voltage(0);
   }
