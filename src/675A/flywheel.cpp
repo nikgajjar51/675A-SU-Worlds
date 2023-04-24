@@ -7,7 +7,7 @@ void flywheel_controller::set_target(double target_speed) {
   flywheel_rpm_guard.give();
 }
 void flywheel_controller::set_mode(int mode) {
-    flywheel_mode_guard.take();
+  flywheel_mode_guard.take();
   if (mode == 1) {
     mode_ = 1;
   } else if (mode == 2) {
@@ -25,4 +25,6 @@ void flywheel_controller::fly_control() {
   } else if (mode_ == 3) {
     flywheel_motor.move_voltage(0);
   }
+}
+void flywheel_controller::fire_discs() {
 }

@@ -6,6 +6,7 @@ public:
   void set_target(double target_speed);
   void set_mode(int mode);
   void fly_control();
+  void fire_discs();
 
 private:
   Mutex flywheel_rpm_guard, flywheel_mode_guard;
