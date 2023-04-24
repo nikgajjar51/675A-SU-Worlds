@@ -27,12 +27,12 @@ void tongue_control_function() {
 void speed_control_function() {
   while (true) {
     if (master.get_digital_new_press(flywheel_toggle_button)) {
-      if (!fly_off) {
+      if (!flywheel_toggle) {
         flywheel.set_mode(3);
-        fly_off = true;
+        flywheel_toggle = true;
       } else {
         flywheel.set_mode(1);
-        fly_off = false;
+        flywheel_toggle = false;
       }
     }
   }

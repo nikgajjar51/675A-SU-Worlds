@@ -1,5 +1,5 @@
-bin/675A/flywheel.cpp.o: src/675A/flywheel.cpp include/main.h \
- include/api.h include/pros/adi.h include/pros/colors.h \
+bin/675A/pid_controllers.cpp.o: src/675A/pid_controllers.cpp \
+ include/main.h include/api.h include/pros/adi.h include/pros/colors.h \
  include/pros/distance.h include/pros/error.h include/pros/ext_adi.h \
  include/pros/adi.h include/pros/adi.h include/pros/gps.h \
  include/pros/imu.h include/pros/link.h include/pros/llemu.h \
