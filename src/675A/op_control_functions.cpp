@@ -16,11 +16,9 @@ void tongue_control_function() {
       is_tongue_up = !is_tongue_up;
       if (is_tongue_up) {
         tongue_pneumatic.set_value(true);
-        shooting_speed = tongue_up_speed;
 
       } else if (!is_tongue_up) {
         tongue_pneumatic.set_value(false);
-        shooting_speed = tongue_down_speed;
       }
     }
     delay(ez::util::DELAY_TIME);
@@ -30,9 +28,14 @@ void speed_control_function() {
   while (true) {
     if (master.get_digital(speed_toggle_button) || is_outtaking) {
       shooting_speed = 12000;
+    } else if (is_tongue_up) {
+      shooting_speed = tongue_up_speed;
+
+    } else if (!is_tongue_up) {
+      shooting_speed = tongue_down_speed;
     }
-    delay(ez::util::DELAY_TIME);
   }
+  delay(ez::util::DELAY_TIME);
 }
 void flywheel_function() {
   if (is_flywheel_running) {
