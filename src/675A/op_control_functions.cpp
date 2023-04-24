@@ -1,7 +1,4 @@
-#include "EZ-Template/util.hpp"
-#include "constants.hpp"
 #include "main.h"
-#include "pros/misc.h"
 using namespace pros;
 void flywheel_control_function() {
   while (true) {
@@ -17,9 +14,13 @@ void tongue_control_function() {
       is_tongue_up = !is_tongue_up;
       if (is_tongue_up) {
         tongue_pneumatic.set_value(true);
+        flywheel.set_mode(1);
+        flywheel.set_target(tongue_up_speed);
 
       } else if (!is_tongue_up) {
         tongue_pneumatic.set_value(false);
+        flywheel.set_mode(1);
+        flywheel.set_target(tongue_down_speed);
       }
     }
     delay(ez::util::DELAY_TIME);
@@ -28,24 +29,12 @@ void tongue_control_function() {
 void speed_control_function() {
   while (true) {
     if (master.get_digital(speed_toggle_button) || !is_outtaking) {
-      shooting_speed = 12000;
+      flywheel.set_mode(2);
+    } else {
+      flywheel.set_mode(0);
     }
   }
   delay(ez::util::DELAY_TIME);
-}
-void flywheel_function() {
-  if (is_flywheel_running) {
-    if (is_tongue_up) {
-      bang_bang_control_function(tongue_up_speed);
-
-    } else if (!is_tongue_up) {
-      bang_bang_control_function(tongue_down_speed);
-    } else {
-      flywheel.move_voltage(shooting_speed);
-    }
-  } else if (!is_flywheel_running) {
-    flywheel.move_voltage(0);
-  }
 }
 
 void intake_control_function() {
@@ -58,7 +47,7 @@ void intake_control_function() {
       intake_power(intake_out_speed);
     } else {
       is_outtaking = false;
-      intake.move_velocity(0);
+      intake_motor.move_velocity(0);
     }
     delay(ez::util::DELAY_TIME);
   }

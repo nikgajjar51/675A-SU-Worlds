@@ -48,7 +48,7 @@ void opcontrol() {
   Task drive_data_export_task(driver_data_export);
   Task intake_task(intake_control_function);
   Task endgame_task(endgame_control_function);
-  Task flywheel_task(flywheel_control_function);
+  Task flywheel_task([&] { flywheel.fly_control(); });
   Task tongue_task(tongue_control_function);
   Task speed_task(speed_control_function);
   chassis.set_drive_brake(E_MOTOR_BRAKE_COAST);

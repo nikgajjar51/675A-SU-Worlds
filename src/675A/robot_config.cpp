@@ -1,7 +1,7 @@
 #include "main.h"
 using namespace pros;
-Motor flywheel(10, E_MOTOR_GEARSET_06, true, E_MOTOR_ENCODER_DEGREES);
-Motor intake(1, E_MOTOR_GEARSET_06, false, E_MOTOR_ENCODER_DEGREES);
+Motor flywheel_motor(10, E_MOTOR_GEARSET_06, true, E_MOTOR_ENCODER_DEGREES);
+Motor intake_motor(1, E_MOTOR_GEARSET_06, false, E_MOTOR_ENCODER_DEGREES);
 ADIDigitalOut intake_pneumatic('A');
 ADIDigitalOut endgame_pnematic('B');
 ADIDigitalOut tongue_pneumatic('H');

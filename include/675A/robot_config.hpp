@@ -1,8 +1,8 @@
 #pragma once
 #include "api.h"
 using namespace pros;
-extern Motor flywheel;
-extern Motor intake;
+extern Motor flywheel_motor;
+extern Motor intake_motor;
 extern ADIDigitalOut intake_pneumatic;
 extern ADIDigitalOut endgame_pnematic;
 extern ADIDigitalOut tongue_pneumatic;
