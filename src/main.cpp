@@ -31,7 +31,11 @@ void initialize() {
   Task flywheel_task([&] { flywheel.fly_control(); });
 }
 
-void disabled() { master.clear(); }
+void disabled() { 
+  master.clear();
+  flywheel.set_mode(3);
+}
+
 void competition_initialize() { master.clear(); }
 
 void autonomous() {
@@ -46,6 +50,7 @@ void autonomous() {
 
 void opcontrol() {
   master.clear();
+  flywheel.set_mode(1);
   Task drive_data_export_task(driver_data_export);
   Task intake_task(intake_control_function);
   Task endgame_task(endgame_control_function);

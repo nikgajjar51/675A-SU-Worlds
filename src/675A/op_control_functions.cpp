@@ -14,12 +14,10 @@ void tongue_control_function() {
       is_tongue_up = !is_tongue_up;
       if (is_tongue_up) {
         tongue_pneumatic.set_value(true);
-        flywheel.set_mode(1);
         flywheel.set_target(tongue_up_speed);
 
       } else if (!is_tongue_up) {
         tongue_pneumatic.set_value(false);
-        flywheel.set_mode(1);
         flywheel.set_target(tongue_down_speed);
       }
     }
@@ -28,10 +26,14 @@ void tongue_control_function() {
 }
 void speed_control_function() {
   while (true) {
-    if (master.get_digital(speed_toggle_button)) {
-      flywheel.set_mode(2);
-    } else {
-      flywheel.set_mode(0);
+    if (master.get_digital_new_press(speed_toggle_button)) {
+      if (!fly_off) {
+        flywheel.set_mode(3);
+        fly_off = true;
+      } else {
+        flywheel.set_mode(1);
+        fly_off = true;
+      }
     }
   }
   delay(ez::util::DELAY_TIME);
@@ -47,6 +49,7 @@ void intake_control_function() {
       is_outtaking = true;
       intake_power(intake_out_speed);
     } else {
+      flywheel.set_mode(1);
       is_outtaking = false;
       intake_motor.move_velocity(0);
     }
