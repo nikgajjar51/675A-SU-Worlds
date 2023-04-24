@@ -3,8 +3,7 @@ using namespace pros;
 const int drive_speed = 70, turn_speed = 75, swerve_speed = 50;
 const double low_speed_multiplier = .5, normal_speed_multiplier = 1,
              high_speed_multiplier = 1.7, balls_to_the_walls = 2;
-double tongue_up_speed, tongue_down_speed, shooting_speed,
-    bang_bang_speed;
+double tongue_up_speed, tongue_down_speed, shooting_speed;
 std::string drive_lock_type = "Coast", alliance = "Red";
 bool drive_lock_toggle = false, intake_clamp_toggle = true,
      intake_clamp_state = true, is_flywheel_running = false,

@@ -54,11 +54,9 @@ void opcontrol() {
   chassis.set_drive_brake(E_MOTOR_BRAKE_COAST);
   while (true) {
     // tongue_up_speed is tongue up idle voltage
-    tongue_up_speed = 12000;
+    tongue_up_speed = 3300;
     // tongue_down_speed is tongue down idle voltage
-    tongue_down_speed = 9000;
-    // bang_bang_speed is speed that bang bang will run at when not outtaking
-    bang_bang_speed = 2500;
+    tongue_down_speed = 2000;
     flywheel_function();
     chassis.arcade_standard(ez::SPLIT);
     delay(ez::util::DELAY_TIME);
