@@ -17,18 +17,20 @@ void flywheel_controller::set_mode(int mode) {
   flywheel_mode_guard.give();
 }
 void flywheel_controller::fly_control() {
-  if (mode_ == 1) {
-    if ((get_flywheel_velocity() * 6) < flywheel_target_rpm) {
+  while (true){
+    if (mode_ == 1) {
+      if ((get_flywheel_velocity() * 6) < flywheel_target_rpm) {
+        flywheel_motor.move_voltage(12000);
+      } else {
+        flywheel_motor.move_voltage((flywheel_target_rpm / 3600) * 12000);
+      }
+    } else if (mode_ == 2) {
       flywheel_motor.move_voltage(12000);
-    } else {
-      flywheel_motor.move_voltage((flywheel_target_rpm / 3600) * 12000);
+    } else if (mode_ == 3) {
+      flywheel_motor.move_voltage(0);
     }
-  } else if (mode_ == 2) {
-    flywheel_motor.move_voltage(12000);
-  } else if (mode_ == 3) {
-    flywheel_motor.move_voltage(0);
-  }
 
-  pros::Task::delay_until(&t, 10);
+    pros::Task::delay_until(&t, 10);
+  }
 }
 void flywheel_controller::fire_discs() {}
