@@ -76,7 +76,7 @@ bin/675A/op_control_functions.cpp.o: src/675A/op_control_functions.cpp \
  include/pros/rotation.hpp include/pros/rotation.h include/pros/rtos.hpp \
  include/pros/screen.hpp include/pros/screen.h include/pros/vision.hpp \
  include/pros/vision.h include/pros/link.hpp include/pros/link.h \
- include/675A/constants.hpp include/api.h include/675A/flywheel_pid.hpp \
+ include/675A/constants.hpp include/api.h include/675A/flywheel.hpp \
  include/675A/helper_functions.hpp include/675A/match_autons.hpp \
  include/675A/op_control_functions.hpp \
  include/675A/programming_skills.hpp include/675A/robot_config.hpp \
@@ -239,7 +239,7 @@ include/pros/link.hpp:
 include/pros/link.h:
 include/675A/constants.hpp:
 include/api.h:
-include/675A/flywheel_pid.hpp:
+include/675A/flywheel.hpp:
 include/675A/helper_functions.hpp:
 include/675A/match_autons.hpp:
 include/675A/op_control_functions.hpp:

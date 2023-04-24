@@ -1,4 +1,4 @@
-bin/675A/match_autons.cpp.o: src/675A/match_autons.cpp include/main.h \
+bin/675A/flywheel.cpp.o: src/675A/flywheel.cpp include/main.h \
  include/api.h include/pros/adi.h include/pros/colors.h \
  include/pros/distance.h include/pros/error.h include/pros/ext_adi.h \
  include/pros/adi.h include/pros/adi.h include/pros/gps.h \

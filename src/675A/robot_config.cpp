@@ -11,3 +11,4 @@ controller_digital_e_t speed_toggle_button = E_CONTROLLER_DIGITAL_R1;
 controller_digital_e_t intake_in_button = E_CONTROLLER_DIGITAL_L1;
 controller_digital_e_t intake_out_button = E_CONTROLLER_DIGITAL_L2;
 controller_digital_e_t drive_lock_toggle_button = E_CONTROLLER_DIGITAL_RIGHT;
+flywheel_controller flywheelflywheel;

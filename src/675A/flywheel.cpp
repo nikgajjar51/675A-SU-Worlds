@@ -1,6 +1,5 @@
 #include "main.h"
 using namespace pros;
-flywheel_controller flywheelflywheel;
 void flywheel_controller::set_target(double target_speed) {
   flywheel_rpm_guard.take();
   flywheel_target_rpm = (double)target_speed;
@@ -26,5 +25,4 @@ void flywheel_controller::fly_control() {
     flywheel_motor.move_voltage(0);
   }
 }
-void flywheel_controller::fire_discs() {
-}
+void flywheel_controller::fire_discs() {}
