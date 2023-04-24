@@ -3,7 +3,7 @@
 extern const int drive_speed, turn_speed, swerve_speed;
 extern const double low_speed_multiplier, normal_speed_multiplier,
     high_speed_multiplier, balls_to_the_walls;
-extern double shooting_speed_high, shooting_speed_low,
+extern double tongue_up_speed, tongue_down_speed,
     shooting_speed, bang_bang_speed;
 
 // Robot Constants and Toggles

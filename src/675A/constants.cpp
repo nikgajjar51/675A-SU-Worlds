@@ -3,7 +3,7 @@ using namespace pros;
 const int drive_speed = 70, turn_speed = 75, swerve_speed = 50;
 const double low_speed_multiplier = .5, normal_speed_multiplier = 1,
              high_speed_multiplier = 1.7, balls_to_the_walls = 2;
-double shooting_speed_high, shooting_speed_low, shooting_speed,
+double tongue_up_speed, tongue_down_speed, shooting_speed,
     bang_bang_speed;
 std::string drive_lock_type = "Coast", alliance = "Red";
 bool drive_lock_toggle = false, intake_clamp_toggle = true,
@@ -42,5 +42,5 @@ const double p_kF = 0; // was 1.2
 double p_error, p_last_error, p_derivative, p_integral, p_currentVelocity,
     p_power;
 // Motor Constants
-double intake_in_speed = 127;
-double intake_out_speed = -127;
+double intake_in_speed = 12000;
+double intake_out_speed = -12000;

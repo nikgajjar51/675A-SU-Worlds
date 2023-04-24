@@ -53,12 +53,10 @@ void opcontrol() {
   Task speed_task(speed_control_function);
   chassis.set_drive_brake(E_MOTOR_BRAKE_COAST);
   while (true) {
-    // shooting_speed_high is voltage that it will shoot at when outtaking with
-    // tongue up
-    shooting_speed_high = 12000;
-    // shooting_speed_low is voltage that it will shoot at when outtaking with
-    // tongue down
-    shooting_speed_low = 9000;
+    // tongue_up_speed is tongue up idle voltage
+    tongue_up_speed = 12000;
+    // tongue_down_speed is tongue down idle voltage
+    tongue_down_speed = 9000;
     // bang_bang_speed is speed that bang bang will run at when not outtaking
     bang_bang_speed = 2500;
     flywheel_function();

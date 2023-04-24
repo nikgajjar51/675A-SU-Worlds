@@ -4,7 +4,7 @@ int get_flywheel_temp() { return flywheel.get_temperature(); }
 int get_intake_temp() { return intake.get_temperature(); }
 double get_flywheel_velocity() { return flywheel.get_actual_velocity(); }
 void flywheel_power(double percent) { flywheel.move(percent); }
-void intake_power(double percent) { intake.move(percent); }
+void intake_power(double voltage) { intake.move_voltage(voltage); }
 void feedforward_control_function(double target_speed) {
   currentVelocity = get_flywheel_velocity();
   error = target_speed - currentVelocity;

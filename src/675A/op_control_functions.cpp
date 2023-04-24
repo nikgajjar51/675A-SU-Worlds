@@ -1,4 +1,6 @@
+#include "constants.hpp"
 #include "main.h"
+#include "robot_config.hpp"
 using namespace pros;
 void flywheel_control_function() {
   while (true) {
@@ -14,9 +16,11 @@ void tongue_control_function() {
       is_tongue_up = !is_tongue_up;
       if (is_tongue_up) {
         tongue_pneumatic.set_value(true);
+        shooting_speed = tongue_up_speed;
 
       } else if (!is_tongue_up) {
         tongue_pneumatic.set_value(false);
+        shooting_speed = tongue_down_speed;
       }
     }
     delay(ez::util::DELAY_TIME);
@@ -24,26 +28,15 @@ void tongue_control_function() {
 }
 void speed_control_function() {
   while (true) {
-    if (master.get_digital(speed_toggle_button)) {
+    if (master.get_digital(speed_toggle_button) || is_outtaking) {
       shooting_speed = 12000;
-    } else {
-      if (is_tongue_up) {
-        shooting_speed = shooting_speed_high;
-      }
-      if (!is_tongue_up) {
-        shooting_speed = shooting_speed_low;
-      }
     }
     delay(ez::util::DELAY_TIME);
   }
 }
 void flywheel_function() {
   if (is_flywheel_running) {
-    if (!is_outtaking) {
-      bang_bang_control_function(bang_bang_speed); // Target Speed of Bang Bang
-    } else if (is_outtaking) {
-      flywheel.move_voltage(shooting_speed);
-    }
+    flywheel.move_voltage(shooting_speed);
   } else if (!is_flywheel_running) {
     flywheel.move_voltage(0);
   }
