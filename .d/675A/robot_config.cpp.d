@@ -78,7 +78,7 @@ bin/675A/robot_config.cpp.o: src/675A/robot_config.cpp include/main.h \
  include/pros/vision.h include/pros/link.hpp include/pros/link.h \
  include/675A/constants.hpp include/api.h include/675A/flywheel.hpp \
  include/675A/helper_functions.hpp include/675A/match_autons.hpp \
- include/675A/op_control_functions.hpp include/675A/pid_controllers.hpp \
+ include/675A/op_control_functions.hpp include/675A/pid_controller.hpp \
  include/675A/programming_skills.hpp include/675A/robot_config.hpp \
  include/EZ-Template/api.hpp include/EZ-Template/PID.hpp \
  include/EZ-Template/util.hpp include/EZ-Template/auton.hpp \
@@ -243,7 +243,7 @@ include/675A/flywheel.hpp:
 include/675A/helper_functions.hpp:
 include/675A/match_autons.hpp:
 include/675A/op_control_functions.hpp:
-include/675A/pid_controllers.hpp:
+include/675A/pid_controller.hpp:
 include/675A/programming_skills.hpp:
 include/675A/robot_config.hpp:
 include/EZ-Template/api.hpp:
