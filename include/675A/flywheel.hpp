@@ -9,8 +9,9 @@ public:
   void fire_discs();
 
 private:
-  Mutex flywheel_rpm_guard, flywheel_mode_guard;
-  double flywheel_target_rpm;
-  int mode_;
+  pros::Mutex flywheel_rpm_guard
+  pros::Mutex flywheel_mode_guard;
+  double flywheel_target_rpm = 2600;
+  int mode_ = 3;
 };
 extern flywheel_controller flywheel;
