@@ -28,7 +28,7 @@ void tongue_control_function() {
 }
 void speed_control_function() {
   while (true) {
-    if (master.get_digital(speed_toggle_button) || !is_outtaking) {
+    if (master.get_digital(speed_toggle_button)) {
       flywheel.set_mode(2);
     } else {
       flywheel.set_mode(0);
@@ -43,6 +43,7 @@ void intake_control_function() {
       is_outtaking = false;
       intake_power(intake_in_speed);
     } else if (master.get_digital(intake_out_button)) {
+      flywheel.set_mode(2);
       is_outtaking = true;
       intake_power(intake_out_speed);
     } else {
