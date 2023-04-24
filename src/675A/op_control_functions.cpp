@@ -1,6 +1,7 @@
+#include "EZ-Template/util.hpp"
 #include "constants.hpp"
-#include "helper_functions.hpp"
 #include "main.h"
+#include "pros/misc.h"
 using namespace pros;
 void flywheel_control_function() {
   while (true) {
@@ -26,13 +27,8 @@ void tongue_control_function() {
 }
 void speed_control_function() {
   while (true) {
-    if (master.get_digital(speed_toggle_button) || is_outtaking) {
+    if (master.get_digital(speed_toggle_button) || !is_outtaking) {
       shooting_speed = 12000;
-    } else if (is_tongue_up) {
-      shooting_speed = tongue_up_speed;
-
-    } else if (!is_tongue_up) {
-      shooting_speed = tongue_down_speed;
     }
   }
   delay(ez::util::DELAY_TIME);
@@ -40,10 +36,10 @@ void speed_control_function() {
 void flywheel_function() {
   if (is_flywheel_running) {
     if (is_tongue_up) {
-      bang_bang_control_function(shooting_speed);
+      bang_bang_control_function(tongue_up_speed);
 
     } else if (!is_tongue_up) {
-      bang_bang_control_function(shooting_speed);
+      bang_bang_control_function(tongue_down_speed);
     } else {
       flywheel.move_voltage(shooting_speed);
     }
@@ -51,6 +47,7 @@ void flywheel_function() {
     flywheel.move_voltage(0);
   }
 }
+
 void intake_control_function() {
   while (true) {
     if (master.get_digital(intake_in_button)) {
