@@ -35,4 +35,15 @@ void flywheel_controller::fly_control() {
     pros::Task::delay_until(&t, 10);
   }
 }
-void flywheel_controller::fire_discs() {}
+
+void flywheel_controller::fire_discs(int numDisk, int fireTime) {
+    set_mode(1);
+
+    for (int i = 0; i < numDisk; i++) {
+        intake = -70;
+        pros::delay(100);
+        intake = 100
+        pros::delay(350);
+        numDisk--;
+    }
+}

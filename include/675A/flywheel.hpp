@@ -6,7 +6,7 @@ public:
   void set_target(double target_speed);
   void set_mode(int mode);
   void fly_control();
-  void fire_discs();
+  void fire_discs(int numDisk, int fireTime);
 
 private:
   pros::Mutex flywheel_rpm_guard;
