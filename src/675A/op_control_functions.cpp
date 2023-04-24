@@ -23,12 +23,10 @@ void tongue_control_function() {
   }
 }
 void speed_control_function() {
-  if (master.get_digital(speed_toggle_button)) {
-    if (is_high_speed) {
-      is_high_speed = !is_high_speed;
+  while (true) {
+    if (master.get_digital(speed_toggle_button)) {
       shooting_speed = 12000;
-    } else if (!is_high_speed) {
-      is_high_speed = !is_high_speed;
+    } else {
       if (is_tongue_up) {
         shooting_speed = shooting_speed_high;
       }
@@ -36,6 +34,7 @@ void speed_control_function() {
         shooting_speed = shooting_speed_low;
       }
     }
+    delay(ez::util::DELAY_TIME);
   }
 }
 void flywheel_function() {
