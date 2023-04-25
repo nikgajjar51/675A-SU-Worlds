@@ -3,9 +3,9 @@ using namespace pros;
 // Chassis constructor
 Drive chassis(
     // Left Chassis Ports (negative port will reverse it!)
-    {13, -12, -11},
+    {11, -12, -13},
     // Right Chassis Ports (negative port will reverse it!)
-    {20, 19, -18},
+    {18, 19, -20},
     // IMU Port
     2,
     // Wheel Diameter (Remember, 4" wheels are actually 4.125!)
@@ -59,9 +59,9 @@ void opcontrol() {
   chassis.set_drive_brake(E_MOTOR_BRAKE_COAST);
   while (true) {
     // tongue_up_speed is tongue up idle voltage
-    tongue_up_speed = 3300;
+    tongue_up_speed = 2600;
     // tongue_down_speed is tongue down idle voltage
-    tongue_down_speed = 2000;
+    tongue_down_speed = 3300;
     chassis.arcade_standard(ez::SPLIT);
     delay(ez::util::DELAY_TIME);
   }

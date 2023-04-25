@@ -43,9 +43,10 @@ void intake_control_function() {
   while (true) {
     if (master.get_digital(intake_in_button)) {
       is_outtaking = false;
+      flywheel.set_mode(2);
       intake_power(intake_in_speed);
     } else if (master.get_digital(intake_out_button)) {
-      flywheel.set_mode(2);
+    
       is_outtaking = true;
       intake_power(intake_out_speed);
     } else {
