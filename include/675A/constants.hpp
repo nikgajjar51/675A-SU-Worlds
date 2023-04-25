@@ -59,11 +59,16 @@ extern std::string drive_lock_type;
  *
  */
 extern std::string alliance;
-
+/**
+ * @brief Drive Lock Toggle: Toggles whether or not the drive lock should be
+ * enabled or disabled.
+ *
+ */
 extern bool drive_lock_toggle;
-extern bool intake_clamp_toggle;
-extern bool flywheel_toggle;
-extern bool intake_clamp_state;
+/**
+ * @brief Flywheel
+ *
+ */
 extern bool is_flywheel_running;
 extern bool is_tongue_up;
 extern bool is_outtaking;

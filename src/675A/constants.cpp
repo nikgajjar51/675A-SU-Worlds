@@ -5,8 +5,7 @@ const double low_speed_multiplier = .5, normal_speed_multiplier = 1,
              high_speed_multiplier = 1.7, balls_to_the_walls = 2;
 double tongue_up_speed, tongue_down_speed;
 std::string drive_lock_type = "Coast", alliance = "Red";
-bool drive_lock_toggle = false, intake_clamp_toggle = true,
-     intake_clamp_state = true, is_flywheel_running = false,
+bool drive_lock_toggle = false, is_flywheel_running = false,
      is_tongue_up = false, is_outtaking = false, is_high_speed = false;
 void chassis_default_constants() {
   chassis.set_slew_min_power(80, 80);
@@ -43,4 +42,3 @@ double p_error, p_last_error, p_derivative, p_integral, p_currentVelocity,
 // Motor Constants
 double intake_in_speed = 12000;
 double intake_out_speed = -12000;
-bool flywheel_toggle = false;

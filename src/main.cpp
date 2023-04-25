@@ -3,9 +3,9 @@ using namespace pros;
 // Chassis constructor
 Drive chassis(
     // Left Chassis Ports (negative port will reverse it!)
-    {13, -12, -11},
+    {-13, -12, 11},
     // Right Chassis Ports (negative port will reverse it!)
-    {20, 19, -18},
+    {-20, 19, 18},
     // IMU Port
     2,
     // Wheel Diameter (Remember, 4" wheels are actually 4.125!)
@@ -31,7 +31,7 @@ void initialize() {
   Task flywheel_task([&] { flywheel.fly_control(); });
 }
 
-void disabled() { 
+void disabled() {
   master.clear();
   flywheel.set_mode(3);
 }
@@ -50,17 +50,18 @@ void autonomous() {
 
 void opcontrol() {
   master.clear();
-  flywheel.set_mode(1);
+  flywheel.set_mode(2);
   Task drive_data_export_task(driver_data_export);
-  Task intake_task(intake_control_function);
-  Task endgame_task(endgame_control_function);
-  Task tongue_task(tongue_control_function);
-  Task speed_task(speed_control_function);
+  Task flywheel_control_task(flywheel_control_function);
+  Task speed_control_task(speed_control_function);
+  Task tongue_control_task(tongue_control_function);
+  Task intake_control_task(intake_control_function);
+  Task speed_task(speed_control);
+  Task endgame_control_task(endgame_control_function);
+  Task drive_lock_control_task(drive_lock_control_function);
   chassis.set_drive_brake(E_MOTOR_BRAKE_COAST);
   while (true) {
-    // tongue_up_speed is tongue up idle voltage
-    tongue_up_speed = 3300;
-    // tongue_down_speed is tongue down idle voltage
+    tongue_up_speed = 2300;
     tongue_down_speed = 2000;
     chassis.arcade_standard(ez::SPLIT);
     delay(ez::util::DELAY_TIME);

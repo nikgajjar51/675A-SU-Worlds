@@ -19,7 +19,7 @@ void flywheel_controller::set_mode(int mode) {
 void flywheel_controller::fly_control() {
   uint32_t t = pros::millis();
 
-  while (true){
+  while (true) {
     if (mode_ == 1) {
       if ((get_flywheel_velocity() * 6) < flywheel_target_rpm) {
         flywheel_motor.move_voltage(12000);
@@ -37,13 +37,13 @@ void flywheel_controller::fly_control() {
 }
 
 void flywheel_controller::fire_discs(int numDisk) {
-    set_mode(1);
+  set_mode(1);
 
-    for (int i = 0; i < numDisk; i++) {
-        intake_motor = -70;
-        pros::delay(100);
-        intake_motor = 100;
-        pros::delay(350);
-        numDisk--;
-    }
+  for (int i = 0; i < numDisk; i++) {
+    intake_motor = -70;
+    pros::delay(100);
+    intake_motor = 100;
+    pros::delay(350);
+    numDisk--;
+  }
 }

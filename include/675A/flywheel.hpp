@@ -1,3 +1,13 @@
+/**
+ * @file flywheel.hpp
+ * @author Nikhil Gajjar
+ * @brief Flywheel control class
+ * @version 0.1
+ * @date 2023-04-24
+ *
+ * @copyright Copyright (c) 2023
+ *
+ */
 #include "api.h"
 #pragma once
 using namespace pros;
@@ -9,8 +19,8 @@ public:
   void fire_discs(int numDisk);
 
 private:
-  pros::Mutex flywheel_rpm_guard;
-  pros::Mutex flywheel_mode_guard;
+  Mutex flywheel_rpm_guard;
+  Mutex flywheel_mode_guard;
   double flywheel_target_rpm = 2600;
   int mode_ = 3;
 };

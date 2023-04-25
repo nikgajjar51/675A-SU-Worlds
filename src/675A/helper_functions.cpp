@@ -18,7 +18,7 @@ void pid_control_function_2(double target_speed) {
 }
 void autonomous_data_export() {
   while (true) {
-    master.print(0, 0, "Alliance: %s", alliance);
+    master.print(0, 0, "Auto: %i", as::auton_selector.current_auton_page);
     pros::delay(50);
     master.print(1, 0, "Fly Speed: %f",
                  abs(flywheel_motor.get_actual_velocity() / 10) * 60);
@@ -39,4 +39,11 @@ void driver_data_export() {
                  get_intake_temp());
     pros::delay(250);
   }
+}
+bool assign_multiple_buttons(
+    std::vector<pros::controller_digital_e_t> input_buttons) {
+  for (int i; i <= input_buttons.size(); i++) {
+    return master.get_digital(input_buttons.at(i));
+  }
+  return false;
 }
