@@ -42,6 +42,7 @@ void intake_control_toggle_function() {
       is_outtaking = true;
       intake_power(intake_out_speed);
     } else {
+      is_outtaking = false;
       intake_motor.move_velocity(0);
     }
     delay(ez::util::DELAY_TIME);

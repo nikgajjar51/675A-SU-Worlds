@@ -67,11 +67,8 @@ void opcontrol() {
     chassis.arcade_standard(ez::SPLIT);
 
     if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_LEFT)) {
-      flywheel.set_mode(1);
-      flywheel.set_target(2000);
       flywheel.lock_flywheel();
-      pros::delay(2000);
-      flywheel.fire_discs(3);
+      flywheel.jank_fire(2000, 1);
       flywheel.lock_flywheel();
     }
 

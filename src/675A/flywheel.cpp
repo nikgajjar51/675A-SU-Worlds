@@ -2,7 +2,7 @@
 using namespace pros;
 void flywheel_controller::set_target(double target_speed) {
   flywheel_rpm_guard.take();
-  if (!get_lock()) {
+  if (get_lock() == false) {
     flywheel_target_rpm = (double)target_speed;
   }
   flywheel_rpm_guard.give();
@@ -31,7 +31,7 @@ double flywheel_controller::get_target_speed() {
 
 void flywheel_controller::set_mode(int mode) {
   flywheel_mode_guard.take();
-  if (!get_lock()) {
+  if (get_lock() == false) {
     mode_ = mode;
   }
   flywheel_mode_guard.give();
@@ -90,4 +90,13 @@ void flywheel_controller::fire_discs(int numDisk) {
     wait_until(400);
     numDisk--;
   }
+}
+
+void jank_fire(double target, int mode) {
+  mode_ = mode;
+  flywheel_target_rpm = target;
+
+  pros::delay(2000);
+
+  fire_discs(3);
 }
