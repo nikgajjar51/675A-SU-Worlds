@@ -1,4 +1,5 @@
 #include "main.h"
+#include "675A/match_autons.hpp"
 using namespace pros;
 // Chassis constructor
 Drive chassis(
@@ -40,7 +41,6 @@ void competition_initialize() { master.clear(); }
 
 void autonomous() {
   master.clear();
-  Task autonomous_data_export_task(autonomous_data_export);
   chassis.reset_pid_targets();
   chassis.reset_gyro();
   chassis.reset_drive_sensor();
@@ -52,14 +52,14 @@ void opcontrol() {
   master.clear();
   flywheel.set_mode(2);
   Task drive_data_export_task(driver_data_export);
-  Task flywheel_control_task(flywheel_control_function);
-  Task speed_control_task(speed_control_function);
-  Task tongue_control_task(tongue_control_function);
-  Task intake_control_task(intake_control_function);
+  Task flywheel_control_task(flywheel_toggle_function);
+  Task speed_control_task(speed_toggle_function);
+  Task tongue_control_task(tongue_control_toggle_function);
+  Task intake_control_task(intake_control_toggle_function);
   Task speed_task(speed_control);
   Task endgame_control_task(endgame_control_function);
   Task drive_lock_control_task(drive_lock_control_function);
-  chassis.set_drive_brake(E_MOTOR_BRAKE_COAST);
+  // Task testing_speeds(set_speed_manually);
   while (true) {
     tongue_up_speed = 2300;
     tongue_down_speed = 2000;

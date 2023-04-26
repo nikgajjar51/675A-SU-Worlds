@@ -17,6 +17,8 @@ public:
   void set_mode(int mode);
   void fly_control();
   void fire_discs(int numDisk);
+  bool is_flywheel_running;
+  bool flywheel_state;
 
 private:
   Mutex flywheel_rpm_guard;

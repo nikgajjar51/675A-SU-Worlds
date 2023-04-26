@@ -1,35 +1,46 @@
+#include "constants.hpp"
+#include "flywheel.hpp"
 #include "main.h"
 using namespace pros;
-void flywheel_control_function() {
+void flywheel_toggle_function() {
   while (true) {
     if (master.get_digital_new_press(flywheel_toggle_button)) {
-      is_flywheel_running = !is_flywheel_running;
+      if (is_flywheel_on) {
+        is_flywheel_on = !is_flywheel_on;
+      } else {
+        is_flywheel_on = !is_flywheel_on;
+      }
     }
     delay(ez::util::DELAY_TIME);
   }
 }
-void speed_control_function() {
+void speed_toggle_function() {
   while (true) {
     if (master.get_digital(speed_toggle_button)) {
-      is_high_speed = !is_high_speed;
+      if (is_high_speed) {
+        is_high_speed = !is_high_speed;
+      } else if (!master.get_digital(speed_toggle_button)) {
+        is_high_speed = !is_high_speed;
+      }
     }
     delay(ez::util::DELAY_TIME);
   }
 }
-void tongue_control_function() {
+void tongue_control_toggle_function() {
   while (true) {
     if (master.get_digital_new_press(tongue_toggle_button)) {
-      is_tongue_up = !is_tongue_up;
-      if (is_tongue_up) {
+      if (is_tongue_up && !disable_tongue_speed) {
+        is_tongue_up = !is_tongue_up;
         tongue_pneumatic.set_value(true);
-      } else if (!is_tongue_up) {
+      } else if (!is_tongue_up && !disable_tongue_speed) {
+        is_tongue_up = !is_tongue_up;
         tongue_pneumatic.set_value(false);
       }
     }
     delay(ez::util::DELAY_TIME);
   }
 }
-void intake_control_function() {
+void intake_control_toggle_function() {
   while (true) {
     if (master.get_digital(intake_in_button)) {
       is_outtaking = false;
@@ -45,19 +56,17 @@ void intake_control_function() {
 }
 void speed_control() {
   while (true) {
-    if (is_flywheel_running) {
+    if (is_flywheel_on) {
       if (is_tongue_up) {
         flywheel.set_mode(1);
         flywheel.set_target(tongue_up_speed);
       } else if (!is_tongue_up) {
         flywheel.set_mode(1);
         flywheel.set_target(tongue_down_speed);
-      } else if (is_high_speed) {
-        flywheel.set_mode(2);
-      }
-    } else if (!is_outtaking) {
+      } else if (is_high_speed || !is_outtaking)
+        disable_tongue_speed = true;
       flywheel.set_mode(2);
-    } else if (!is_flywheel_running) {
+    } else {
       flywheel.set_mode(3);
     }
     delay(ez::util::DELAY_TIME);
@@ -65,7 +74,8 @@ void speed_control() {
 }
 void endgame_control_function() {
   while (true) {
-    if (assign_multiple_buttons(expansion_toggle_buttons)) {
+    if (master.get_digital(expansion_toggle_button_1) &&
+        master.get_digital(expansion_toggle_button_2)) {
       endgame_pneumatic.set_value(true);
     }
     delay(ez::util::DELAY_TIME);
@@ -73,7 +83,7 @@ void endgame_control_function() {
 }
 void drive_lock_control_function() {
   while (true) {
-    if (master.get_digital_new_press(drive_lock_toggle_button)) {
+    if (master.get_digital(drive_lock_toggle_button)) {
       if (drive_lock_toggle) {
         drive_lock_toggle = !drive_lock_toggle;
         drive_lock_type = "Hold ";
@@ -86,6 +96,28 @@ void drive_lock_control_function() {
         chassis.reset_drive_sensor();
         chassis.set_active_brake(0.0);
       }
+    }
+    delay(ez::util::DELAY_TIME);
+  }
+}
+void set_speed_manually() {
+  while (true) {
+    double target = 1500;
+    if (master.get_digital(E_CONTROLLER_DIGITAL_Y)) {
+      target += 100;
+      flywheel.set_mode(1);
+      flywheel.set_target(target);
+    } else if (master.get_digital(E_CONTROLLER_DIGITAL_Y)) {
+      target -= 100;
+      flywheel.set_mode(1);
+      flywheel.set_target(target);
+    } else if (master.get_digital(E_CONTROLLER_DIGITAL_L2)) {
+      intake_power(100);
+    } else if (master.get_digital(E_CONTROLLER_DIGITAL_L2)) {
+      intake_power(-100);
+    } else {
+      intake_motor.move_velocity(0);
+      flywheel.set_mode(3);
     }
     delay(ez::util::DELAY_TIME);
   }

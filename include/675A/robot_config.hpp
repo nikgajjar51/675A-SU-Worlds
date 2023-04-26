@@ -12,5 +12,6 @@ extern controller_digital_e_t speed_toggle_button;
 extern controller_digital_e_t intake_in_button;
 extern controller_digital_e_t intake_out_button;
 extern controller_digital_e_t drive_lock_toggle_button;
-extern std::vector<controller_digital_e_t> expansion_toggle_buttons;
+extern controller_digital_e_t expansion_toggle_button_1;
+extern controller_digital_e_t expansion_toggle_button_2;
 extern flywheel_controller flywheel;
