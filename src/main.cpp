@@ -50,7 +50,7 @@ void autonomous() {
 
 void opcontrol() {
   master.clear();
-  flywheel.set_mode(2);
+  flywheel.set_mode(1);
   Task drive_data_export_task(driver_data_export);
   Task flywheel_control_task(flywheel_toggle_function);
   Task speed_control_task(speed_toggle_function);
@@ -64,6 +64,15 @@ void opcontrol() {
     tongue_up_speed = 2300;
     tongue_down_speed = 2000;
     chassis.arcade_standard(ez::SPLIT);
+
+    if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_LEFT)) {
+      flywheel.set_mode(1);
+      flywheel.set_target(2000);
+      flywheel.lock_flywheel();
+      flywheel.fire_discs(3);
+      flywheel.lock_flywheel();
+    }
+
     delay(ez::util::DELAY_TIME);
   }
 }

@@ -17,12 +17,23 @@ public:
   void set_mode(int mode);
   void fly_control();
   void fire_discs(int numDisk);
+  void lock_flywheel();
+  bool get_lock();
+  double get_target_speed();
+  int get_mode();
   bool is_flywheel_running;
   bool flywheel_state;
+  bool flywheel_locked = false;
 
 private:
+  void wait_until(int maxHold)
   Mutex flywheel_rpm_guard;
   Mutex flywheel_mode_guard;
+  Mutex flywheel_get_rpm_guard;
+  Mutex flywheel_get_target_guard;
+  Mutex flywheel_get_mode_guard;
+  Mutex flywheel_lock_guard;
+  Mutex flywheel_get_lock_guard;
   double flywheel_target_rpm = 2600;
   int mode_ = 3;
 };

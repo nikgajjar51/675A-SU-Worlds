@@ -5,11 +5,7 @@ using namespace pros;
 void flywheel_toggle_function() {
   while (true) {
     if (master.get_digital_new_press(flywheel_toggle_button)) {
-      if (is_flywheel_on) {
         is_flywheel_on = !is_flywheel_on;
-      } else {
-        is_flywheel_on = !is_flywheel_on;
-      }
     }
     delay(ez::util::DELAY_TIME);
   }
@@ -17,11 +13,9 @@ void flywheel_toggle_function() {
 void speed_toggle_function() {
   while (true) {
     if (master.get_digital(speed_toggle_button)) {
-      if (is_high_speed) {
-        is_high_speed = !is_high_speed;
-      } else if (!master.get_digital(speed_toggle_button)) {
-        is_high_speed = !is_high_speed;
-      }
+      is_high_speed = true;
+    } else {
+      is_high_speed = false;
     }
     delay(ez::util::DELAY_TIME);
   }
@@ -65,7 +59,7 @@ void speed_control() {
         flywheel.set_target(tongue_down_speed);
       } else if (is_high_speed || !is_outtaking)
         disable_tongue_speed = true;
-      flywheel.set_mode(2);
+        flywheel.set_mode(2);
     } else {
       flywheel.set_mode(3);
     }

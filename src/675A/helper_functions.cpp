@@ -2,7 +2,6 @@
 using namespace pros;
 int get_flywheel_temp() { return flywheel_motor.get_temperature(); }
 int get_intake_temp() { return intake_motor.get_temperature(); }
-double get_flywheel_velocity() { return flywheel_motor.get_actual_velocity(); }
 void flywheel_power(double percent) { flywheel_motor.move(percent); }
 void intake_power(double percent) { intake_motor.move_voltage(percent); }
 void autonomous_data_export() {
