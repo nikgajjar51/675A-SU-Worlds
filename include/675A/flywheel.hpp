@@ -22,7 +22,7 @@ public:
   double get_target_speed();
   double get_flywheel_velocity();
   int get_mode();
-  void jank_fire(double target, int mode);
+  void jank_fire(double target, int mode, int numDisk);
   bool is_flywheel_running;
   bool flywheel_state;
   bool flywheel_locked = false;
