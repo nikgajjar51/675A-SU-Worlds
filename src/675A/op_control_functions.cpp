@@ -50,15 +50,16 @@ void intake_control_toggle_function() {
 void speed_control() {
   while (true) {
     if (is_flywheel_on) {
-      if (is_tongue_up) {
+      if (is_high_speed || is_outtaking) {
+        disable_tongue_speed = true;
+        flywheel.set_mode(2);
+      } else if (is_tongue_up) {
         flywheel.set_mode(1);
         flywheel.set_target(tongue_up_speed);
       } else if (!is_tongue_up) {
         flywheel.set_mode(1);
         flywheel.set_target(tongue_down_speed);
-      } else if (is_high_speed || is_outtaking)
-        disable_tongue_speed = true;
-        flywheel.set_mode(2);
+      } 
     } else {
       flywheel.set_mode(3);
     }

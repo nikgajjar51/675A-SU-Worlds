@@ -50,6 +50,7 @@ void autonomous() {
 
 void opcontrol() {
   master.clear();
+  flywheel.set_target(2300);
   flywheel.set_mode(1);
   Task drive_data_export_task(driver_data_export);
   Task flywheel_control_task(flywheel_toggle_function);
@@ -69,6 +70,7 @@ void opcontrol() {
       flywheel.set_mode(1);
       flywheel.set_target(2000);
       flywheel.lock_flywheel();
+      pros::delay(2000);
       flywheel.fire_discs(3);
       flywheel.lock_flywheel();
     }
