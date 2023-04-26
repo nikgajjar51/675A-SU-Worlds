@@ -10,7 +10,7 @@ void flywheel_controller::set_target(double target_speed) {
 
 int flywheel_controller::get_mode() {
   flywheel_get_mode_guard.take();
-  int return_val = (int)mode;
+  int return_val = (int)mode_;
   flywheel_get_mode_guard.give();
   return return_val;
 }
@@ -22,7 +22,7 @@ double flywheel_controller::get_flywheel_velocity() {
   return return_val;
 }
 
-double flywheel_controller::get_target_speed(){
+double flywheel_controller::get_target_speed() {
   flywheel_get_target_guard.take();
   double return_val = (double)flywheel_target_rpm;
   flywheel_get_target_guard.give();
@@ -37,13 +37,13 @@ void flywheel_controller::set_mode(int mode) {
   flywheel_mode_guard.give();
 }
 
-void flywheel_controller::lock_fly() {
+void flywheel_controller::lock_flywheel() {
   flywheel_lock_guard.take();
   flywheel_locked = !flywheel_locked;
   flywheel_lock_guard.give();
 }
 
-bool flywheel_controller::get_lock(){
+bool flywheel_controller::get_lock() {
   flywheel_get_lock_guard.take();
   bool return_val = (bool)flywheel_locked;
   flywheel_get_lock_guard.give();
@@ -53,7 +53,7 @@ bool flywheel_controller::get_lock(){
 void flywheel_controller::fly_control() {
   uint32_t t = pros::millis();
 
-  while (true){
+  while (true) {
     int mode = get_mode();
     if (mode == 1) {
       if ((get_flywheel_velocity() * 6) < get_target_speed()) {
@@ -73,21 +73,21 @@ void flywheel_controller::fly_control() {
 
 void flywheel_controller::wait_until(int maxHold) {
   int time = 0;
-	while (get_target_speed() > get_flywheel_velocity() && time < maxHold) {
-		pros::delay(10);
-		time += 10;
-	}
+  while (get_target_speed() > get_flywheel_velocity() && time < maxHold) {
+    pros::delay(10);
+    time += 10;
+  }
 }
 
 void flywheel_controller::fire_discs(int numDisk) {
-    set_mode(1);
+  set_mode(1);
 
-    for (int i = 0; i < numDisk; i++) {
-        intake_motor = -70;
-        pros::delay(100);
-        intake_motor = 100;
-        pros::delay(350);
-        wait_until(400);
-        numDisk--;
-    }
+  for (int i = 0; i < numDisk; i++) {
+    intake_motor = -70;
+    pros::delay(100);
+    intake_motor = 100;
+    pros::delay(350);
+    wait_until(400);
+    numDisk--;
+  }
 }

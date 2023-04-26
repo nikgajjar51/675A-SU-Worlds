@@ -1,5 +1,3 @@
-#include "constants.hpp"
-#include "flywheel.hpp"
 #include "main.h"
 using namespace pros;
 void flywheel_toggle_function() {

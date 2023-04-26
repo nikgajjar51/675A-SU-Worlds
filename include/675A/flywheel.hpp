@@ -20,13 +20,14 @@ public:
   void lock_flywheel();
   bool get_lock();
   double get_target_speed();
+  double get_flywheel_velocity();
   int get_mode();
   bool is_flywheel_running;
   bool flywheel_state;
   bool flywheel_locked = false;
 
 private:
-  void wait_until(int maxHold)
+  void wait_until(int maxHold);
   Mutex flywheel_rpm_guard;
   Mutex flywheel_mode_guard;
   Mutex flywheel_get_rpm_guard;
