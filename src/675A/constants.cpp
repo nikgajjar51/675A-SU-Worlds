@@ -5,7 +5,7 @@ const double low_speed_multiplier = .5, normal_speed_multiplier = 1,
              high_speed_multiplier = 1.7, balls_to_the_walls = 2;
 double tongue_up_speed, tongue_down_speed;
 std::string drive_lock_type = "Coast", alliance = "Red";
-bool drive_lock_toggle = false, is_flywheel_on = false,
+bool drive_lock_toggle = false, is_flywheel_on = true,
      is_tongue_up = true, is_outtaking = false, is_high_speed = false, disable_tongue_speed = true;
 void chassis_default_constants() {
   chassis.set_slew_min_power(80, 80);

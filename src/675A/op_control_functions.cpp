@@ -14,6 +14,7 @@ void speed_toggle_function() {
       is_high_speed = true;
     } else {
       is_high_speed = false;
+      disable_tongue_speed = false;
     }
     delay(ez::util::DELAY_TIME);
   }
@@ -55,7 +56,7 @@ void speed_control() {
       } else if (!is_tongue_up) {
         flywheel.set_mode(1);
         flywheel.set_target(tongue_down_speed);
-      } else if (is_high_speed || !is_outtaking)
+      } else if (is_high_speed || is_outtaking)
         disable_tongue_speed = true;
         flywheel.set_mode(2);
     } else {
