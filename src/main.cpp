@@ -30,6 +30,7 @@ void initialize() {
   chassis.initialize();
   ez::as::initialize();
   Task flywheel_task([&] { flywheel.fly_control(); });
+  intake_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 }
 
 void disabled() {
@@ -68,7 +69,7 @@ void opcontrol() {
 
     if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_LEFT)) {
       flywheel.lock_flywheel();
-      flywheel.jank_fire(2000, 1, 1);
+      flywheel.jank_fire(3000, 1, 3);
       flywheel.lock_flywheel();
     }
 

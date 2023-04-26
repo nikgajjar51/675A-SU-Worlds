@@ -82,13 +82,12 @@ void flywheel_controller::wait_until(int maxHold) {
 void flywheel_controller::fire_discs(int numDisk) {
   set_mode(1);
 
-  for (int i = 0; i < numDisk; i++) {
-    intake_motor = -70;
+  for (int i = 0; i <= numDisk; i++) {
+    intake_motor = 80;
     pros::delay(100);
-    intake_motor = 127;
-    pros::delay(300);
+    intake_motor = -127;
+    pros::delay(700);
     wait_until(400);
-    numDisk--;
   }
   intake_motor = 0;
 }
