@@ -73,7 +73,7 @@ void flywheel_controller::fly_control() {
 
 void flywheel_controller::wait_until(int maxHold) {
   int time = 0;
-  while (get_target_speed() > get_flywheel_velocity() && time < maxHold) {
+  while (get_target_speed() > (get_flywheel_velocity() * 6) && time < maxHold) {
     pros::delay(10);
     time += 10;
   }
@@ -85,11 +85,12 @@ void flywheel_controller::fire_discs(int numDisk) {
   for (int i = 0; i < numDisk; i++) {
     intake_motor = -70;
     pros::delay(100);
-    intake_motor = 100;
-    pros::delay(350);
+    intake_motor = 127;
+    pros::delay(300);
     wait_until(400);
     numDisk--;
   }
+  intake_motor = 0;
 }
 
 void flywheel_controller::jank_fire(double target, int mode, int numDisk) {
@@ -97,14 +98,5 @@ void flywheel_controller::jank_fire(double target, int mode, int numDisk) {
   flywheel_target_rpm = target;
 
   pros::delay(2000);
-  set_mode(1);
-
-  for (int i = 0; i < numDisk; i++) {
-    intake_motor = -70;
-    pros::delay(100);
-    intake_motor = 100;
-    pros::delay(350);
-    wait_until(400);
-    numDisk--;
-  }
+  fire_discs(numDisk);
 }
