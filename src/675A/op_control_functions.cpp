@@ -42,7 +42,7 @@ void intake_control_toggle_function() {
       is_outtaking = true;
       intake_power(intake_out_speed);
     } else {
-      is_outtaking = false;
+      is_outtaking = true;
       intake_motor.move_velocity(0);
     }
     delay(ez::util::DELAY_TIME);
@@ -51,7 +51,7 @@ void intake_control_toggle_function() {
 void speed_control() {
   while (true) {
     if (is_flywheel_on) {
-      if (is_high_speed || is_outtaking) {
+      if (is_high_speed || !is_outtaking) {
         disable_tongue_speed = true;
         flywheel.set_mode(2);
       } else if (is_tongue_up) {

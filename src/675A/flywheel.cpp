@@ -16,10 +16,7 @@ int flywheel_controller::get_mode() {
 }
 
 double flywheel_controller::get_flywheel_velocity() {
-  flywheel_get_rpm_guard.take();
-  double return_val = (double)flywheel_motor.get_actual_velocity();
-  flywheel_get_rpm_guard.give();
-  return return_val;
+  return (double)flywheel_motor.get_actual_velocity();
 }
 
 double flywheel_controller::get_target_speed() {
@@ -82,12 +79,12 @@ void flywheel_controller::wait_until(int maxHold) {
 void flywheel_controller::fire_discs(int numDisk) {
   set_mode(1);
 
-  for (int i = 0; i <= numDisk; i++) {
+  for (int i = 0; i < numDisk; i++) {
     intake_motor = 80;
     pros::delay(100);
     intake_motor = -127;
-    pros::delay(700);
-    wait_until(400);
+    pros::delay(300);
+    wait_until(100);
   }
   intake_motor = 0;
 }
