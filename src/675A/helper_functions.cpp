@@ -3,7 +3,8 @@ using namespace pros;
 int get_flywheel_temp() { return flywheel_motor.get_temperature(); }
 int get_intake_temp() { return intake_motor.get_temperature(); }
 void flywheel_power(double percent) { flywheel_motor.move(percent); }
-void intake_power(double percent) { intake_motor.move_voltage(percent); }
+void intake_power(double percent) { 
+  intake_motor.move_voltage(percent); }
 void autonomous_data_export() {
   while (true) {
     master.print(0, 0, "Auto: %i", as::auton_selector.current_auton_page);

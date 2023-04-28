@@ -93,6 +93,6 @@ void flywheel_controller::jank_fire(double target, int mode, int numDisk) {
   mode_ = mode;
   flywheel_target_rpm = target;
 
-  pros::delay(2000);
+  pros::delay(1000);
   fire_discs(numDisk);
 }

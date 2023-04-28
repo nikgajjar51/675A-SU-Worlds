@@ -15,7 +15,8 @@ Drive chassis(
     600,
     // External Gear Ratio
     .8);
-void initialize() {
+void initialize()
+{
   master.clear();
   ez::print_ez_template();
   delay(500);
@@ -25,31 +26,38 @@ void initialize() {
   chassis_default_constants();
   chassis_exit_condition_defaults();
   ez::as::auton_selector.add_autons({
-      Auton("Right Side 1", right_side_1),
+      Auton("Right Side OP", actual_right),
+      Auton("Roller Only Left Side", roller_only_2),
   });
   chassis.initialize();
   ez::as::initialize();
-  Task flywheel_task([&] { flywheel.fly_control(); });
-  intake_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  intake_motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  Task flywheel_task([&]
+                     { flywheel.fly_control(); });
 }
 
-void disabled() {
+void disabled()
+{
   master.clear();
   flywheel.set_mode(3);
 }
 
 void competition_initialize() { master.clear(); }
 
-void autonomous() {
+void autonomous()
+{
+  Task auton_data(autonomous_data_export);
   master.clear();
   chassis.reset_pid_targets();
   chassis.reset_gyro();
   chassis.reset_drive_sensor();
   chassis.set_drive_brake(MOTOR_BRAKE_HOLD);
   ez::as::auton_selector.call_selected_auton();
+  auton_data.suspend();
 }
 
-void opcontrol() {
+void opcontrol()
+{
   master.clear();
   flywheel.set_target(2300);
   flywheel.set_mode(1);
@@ -61,10 +69,10 @@ void opcontrol() {
   Task speed_task(speed_control);
   Task endgame_control_task(endgame_control_function);
   Task drive_lock_control_task(drive_lock_control_function);
-  // Task testing_speeds(set_speed_manually);
-  while (true) {
-    tongue_up_speed = 2300;
-    tongue_down_speed = 2000;
+  while (true)
+  {
+    tongue_up_speed = 3000;
+    tongue_down_speed = 2100;
     chassis.arcade_standard(ez::SPLIT);
 
     delay(ez::util::DELAY_TIME);
