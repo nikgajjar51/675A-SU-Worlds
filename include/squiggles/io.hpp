@@ -10,7 +10,7 @@
 #include <optional>
 #include <vector>
 
-#include "geometry/profilepoint.hpp"
+#include "squiggles/geometry/profilepoint.hpp"
 
 namespace squiggles {
 /**

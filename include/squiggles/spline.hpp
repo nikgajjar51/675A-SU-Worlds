@@ -11,12 +11,12 @@
 #include <memory>
 #include <vector>
 
-#include "constraints.hpp"
-#include "geometry/controlvector.hpp"
-#include "geometry/profilepoint.hpp"
-#include "math/quinticpolynomial.hpp"
-#include "physicalmodel/passthroughmodel.hpp"
-#include "physicalmodel/physicalmodel.hpp"
+#include "squiggles/constraints.hpp"
+#include "squiggles/geometry/controlvector.hpp"
+#include "squiggles/geometry/profilepoint.hpp"
+#include "squiggles/math/quinticpolynomial.hpp"
+#include "squiggles/physicalmodel/passthroughmodel.hpp"
+#include "squiggles/physicalmodel/physicalmodel.hpp"
 
 namespace squiggles {
 class SplineGenerator {

@@ -1,31 +1,32 @@
 {
-  "configurations": [
-    {
-      "name": "PROS Project",
-      "includePath": [
-        "${workspaceFolder}/**",
-        "c:\\Users\\Nikhil Gajjar\\Documents\\Code\\675A - SU - Worlds\\include",
-        "c:\\Users\\Nikhil Gajjar\\Documents\\Code\\675\\include",
-        "c:\\Users\\Nikhil Gajjar\\Documents\\Robotics Club\\Code\\675A - Worlds - EZ Template\\include"
-      ],
-      "defines": [
-        "_DEBUG",
-        "UNICODE",
-        "_UNICODE"
-      ],
-      "compilerPath": "C:\\Program Files\\PROS\\toolchain\\usr\\bin\\arm-none-eabi-g++",
-      "cStandard": "c17",
-      "cppStandard": "c++17",
-      "intelliSenseMode": "gcc-arm",
-      "compileCommands": "c:\\Users\\Nikhil Gajjar\\Documents\\Code\\675\\compile_commands.json",
-      "browse": {
-        "path": [
-          "c:\\Users\\Nikhil Gajjar\\Documents\\Code\\675"
-        ],
-        "limitSymbolsToIncludedHeaders": true,
-        "databaseFilename": ""
-      }
-    }
-  ],
-  "version": 4
+    "configurations": [
+        {
+            "name": "PROS Project",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "c:\\Users\\Nikhil Gajjar\\Documents\\Code\\675A - SU - Worlds\\include",
+                "c:\\Users\\Nikhil Gajjar\\Documents\\Code\\675\\include",
+                "c:\\Users\\Nikhil Gajjar\\Documents\\Robotics Club\\Code\\675A - Worlds - EZ Template\\include",
+                "${workspaceFolder}/include/squiggles"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "C:\\Program Files\\PROS\\toolchain\\usr\\bin\\arm-none-eabi-g++",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-arm",
+            "compileCommands": "c:\\Users\\Nikhil Gajjar\\Documents\\Code\\675\\compile_commands.json",
+            "browse": {
+                "path": [
+                    "c:\\Users\\Nikhil Gajjar\\Documents\\Code\\675"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        }
+    ],
+    "version": 4
 }

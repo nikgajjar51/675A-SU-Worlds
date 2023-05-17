@@ -7,16 +7,16 @@
 #ifndef _ROBOT_SQUIGGLES_H_
 #define _ROBOT_SQUIGGLES_H_
 
-#include "geometry/controlvector.hpp"
-#include "geometry/pose.hpp"
-#include "geometry/profilepoint.hpp"
+#include "squiggles/geometry/controlvector.hpp"
+#include "squiggles/geometry/pose.hpp"
+#include "squiggles/geometry/profilepoint.hpp"
 
-#include "physicalmodel/passthroughmodel.hpp"
-#include "physicalmodel/physicalmodel.hpp"
-#include "physicalmodel/tankmodel.hpp"
+#include "squiggles/physicalmodel/passthroughmodel.hpp"
+#include "squiggles/physicalmodel/physicalmodel.hpp"
+#include "squiggles/physicalmodel/tankmodel.hpp"
 
-#include "constraints.hpp"
-#include "io.hpp"
-#include "spline.hpp"
+#include "squiggles/constraints.hpp"
+#include "squiggles/io.hpp"
+#include "squiggles/spline.hpp"
 
 #endif
