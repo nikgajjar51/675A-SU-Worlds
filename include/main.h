@@ -49,7 +49,7 @@
 #include "675A/programming_skills.hpp"
 #include "675A/robot_config.hpp"
 #include "EZ-Template/api.hpp"
-
+#include "squiggles/squiggles.hpp"
 // More includes here...
 //
 // . . .
